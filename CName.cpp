@@ -19,7 +19,7 @@ CName::CName(const CName& k) {
 }
 
 istream& operator>>(istream& is, CName& n) {
-    cout << "Nhập họ: ";
+    cout << "\nNhập họ: ";
     is >> n.ho;
     cout << "Nhập tên đệm: ";
     is >> n.tenDem;
