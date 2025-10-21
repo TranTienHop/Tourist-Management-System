@@ -1,4 +1,4 @@
-#include<CName.h>
+#include"CName.h"
 
 CName::CName() {
     ho = "";
