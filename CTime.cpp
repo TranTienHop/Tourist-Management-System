@@ -1,4 +1,6 @@
 #include "CTime.h"
+#include <iomanip>  
+
 CTime::CTime() {
     gio = phut = giay = 0;
 }
@@ -24,16 +26,38 @@ void CTime::setPhut(int m) { phut = m; }
 void CTime::setGiay(int s) { giay = s; }
 
 istream& operator>>(istream& is, CTime& t) {
-    cout << "Nhap gio, phut, giay: ";
-    is >> t.gio >> t.phut >> t.giay;
+    while (true) {
+        cout << "Nhap gio, phut, giay: ";
+        if (!(is >> t.gio >> t.phut >> t.giay)) {
+            is.clear();
+            string bad;
+            getline(is, bad);
+            cout << "khong hop le" << endl;
+            continue;
+        }
+
+        bool hopLe = true;
+        if (t.gio < 0 || t.gio > 23) hopLe = false;
+        if (t.phut < 0 || t.phut > 59) hopLe = false;
+        if (t.giay < 0 || t.giay > 59) hopLe = false;
+
+        if (!hopLe) {
+            cout << "khong hop le" << endl;
+            continue; 
+        }
+
+        break; 
+    }
     return is;
 }
 
 ostream& operator<<(ostream& os, CTime& t) {
-    os << t.gio << ":" << t.phut << ":" << t.giay;
+    os << setw(2) << setfill('0') << t.gio << ":"
+       << setw(2) << setfill('0') << t.phut << ":"
+       << setw(2) << setfill('0') << t.giay;
     return os;
 }
 
 CTime::~CTime() {
-   
+
 }
