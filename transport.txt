@@ -1,0 +1,6 @@
+Plane;PL001;Boeing 737;15000000;Tokyo;12:30:00;Available;180;Japan Airlines;2025-12-05
+Plane;PL002;Airbus A320;13000000;Seoul;08:45:00;Booked;160;Vietnam Airlines;2025-11-20
+Coach;CH001;Hyundai Universe;2500000;Da Nang;06:00:00;Available;Nguyen Van B;45
+Coach;CH002;Thaco Mobihome;2700000;Hue;07:15:00;Booked;Tran Van C;40
+Car;CA001;Toyota Camry;1500000;Ha Long;09:00:00;Available;Gasoline;5;Self-drive
+Car;CA002;Kia Carnival;1800000;Ninh Binh;10:30:00;Booked;Diesel;7;With driver
