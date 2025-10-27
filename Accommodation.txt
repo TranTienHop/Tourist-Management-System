@@ -1,0 +1,4 @@
+Hotel;HT001;Hanoi Grand Hotel;123 Le Loi, Ha Noi;987654321;2500000;Available;5;Spa, Pool, Gym;120
+Hotel;HT002;SaiGon Star Hotel;45 Nguyen Hue, HCM;998877665;1800000;Booked;4;Breakfast, Parking;90
+Motel;MT001;Blue Sky Motel;12 Tran Phu, Da Nang;911223344;500000;Available;24h;30;Available
+Motel;MT002;Sunrise Motel;99 Le Duan, Hue;922334455;450000;Booked;06h-23h;25;Full
