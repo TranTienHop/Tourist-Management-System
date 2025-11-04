@@ -7,13 +7,15 @@
 #include <sstream>
 #include <utility>
 
+using namespace std;
+
 Tour::Tour()
     : tour_id(),
       tour_destination(),
       tour_date(),
       tour_price_per_person(0.0f) {}
 
-Tour::Tour(const std::string& id, const std::string& destination, const CDate& date, float price)
+Tour::Tour(const string& id, const string& destination, const CDate& date, float price)
     : tour_id(id),
       tour_destination(destination),
       tour_date(date),
@@ -24,48 +26,48 @@ Tour::Tour(const Tour& other) = default;
 Tour::~Tour() = default;
 
 void Tour::input_tour() {
-    std::cout << "\nNhap ma tour: ";
-    std::getline(std::cin, tour_id);
+    cout << "\nNhap ma tour: ";
+    getline(cin, tour_id);
 
-    std::cout << "Nhap diem den: ";
-    std::getline(std::cin, tour_destination);
+    cout << "Nhap diem den: ";
+    getline(cin, tour_destination);
 
-    std::cout << "Nhap ngay khoi hanh:\n";
-    std::cin >> tour_date;
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    cout << "Nhap ngay khoi hanh:\n";
+    cin >> tour_date;
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
-    std::cout << "Nhap gia 1 nguoi: ";
-    std::cin >> tour_price_per_person;
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    cout << "Nhap gia 1 nguoi: ";
+    cin >> tour_price_per_person;
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
 }
 
 void Tour::edit_tour() {
-    std::cout << "\n--- Chinh sua tour ---\n";
+    cout << "\n--- Chinh sua tour ---\n";
 
-    std::cout << "Nhap diem den moi: ";
-    std::getline(std::cin, tour_destination);
+    cout << "Nhap diem den moi: ";
+    getline(cin, tour_destination);
 
-    std::cout << "Nhap ngay khoi hanh moi:\n";
-    std::cin >> tour_date;
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    cout << "Nhap ngay khoi hanh moi:\n";
+    cin >> tour_date;
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
-    std::cout << "Nhap gia moi: ";
-    std::cin >> tour_price_per_person;
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    cout << "Nhap gia moi: ";
+    cin >> tour_price_per_person;
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
 }
 
 void Tour::print_tour() const {
-    std::cout << std::left << std::setw(10) << tour_id
-              << std::setw(20) << tour_destination
-              << std::setw(15);
-    std::cout << tour_date;
-    std::cout << std::setw(10) << tour_price_per_person << " VND" << std::endl;
+    cout << left << setw(10) << tour_id
+         << setw(20) << tour_destination
+         << setw(15);
+    cout << tour_date;
+    cout << setw(10) << tour_price_per_person << " VND" << endl;
 }
 
 void Tour::save_tour() const {
-    std::ofstream out("tour.txt", std::ios::app);
+    ofstream out("tour.txt", ios::app);
     if (!out.is_open()) {
-        std::cout << "Khong mo duoc file tour.txt.\n";
+        cout << "Khong mo duoc file tour.txt.\n";
         return;
     }
 
@@ -76,14 +78,14 @@ void Tour::save_tour() const {
         << tour_date.get_year() << ';'
         << tour_price_per_person << '\n';
 
-    std::cout << "Da luu tour vao file.\n";
+    cout << "Da luu tour vao file.\n";
 }
 
-void Tour::set_tour_id(const std::string& id) {
+void Tour::set_tour_id(const string& id) {
     tour_id = id;
 }
 
-void Tour::set_tour_destination(const std::string& destination) {
+void Tour::set_tour_destination(const string& destination) {
     tour_destination = destination;
 }
 
@@ -95,11 +97,11 @@ void Tour::set_tour_price_per_person(float price) {
     tour_price_per_person = price;
 }
 
-std::string Tour::get_tour_id() const {
+string Tour::get_tour_id() const {
     return tour_id;
 }
 
-std::string Tour::get_tour_destination() const {
+string Tour::get_tour_destination() const {
     return tour_destination;
 }
 
@@ -125,8 +127,8 @@ TourList::~TourList() {
 
 void TourList::add_tour() {
     Tour tour;
-    if (std::cin.peek() == '\n') {
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    if (cin.peek() == '\n') {
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
     }
     tour.input_tour();
 
@@ -142,7 +144,7 @@ void TourList::add_tour() {
     }
 }
 
-void TourList::delete_tour(const std::string& id) {
+void TourList::delete_tour(const string& id) {
     if (head == nullptr) {
         return;
     }
@@ -167,17 +169,17 @@ void TourList::delete_tour(const std::string& id) {
     }
 }
 
-void TourList::update_tour(const std::string& id) {
+void TourList::update_tour(const string& id) {
     TourNode* found = search_tour_by_id(id);
     if (found != nullptr) {
         found->data.edit_tour();
-        std::cout << "Cap nhat thanh cong!\n";
+        cout << "Cap nhat thanh cong!\n";
     } else {
-        std::cout << "Khong tim thay tour!\n";
+        cout << "Khong tim thay tour!\n";
     }
 }
 
-TourNode* TourList::search_tour_by_id(const std::string& id) {
+TourNode* TourList::search_tour_by_id(const string& id) {
     TourNode* current = head;
     while (current != nullptr) {
         if (current->data.get_tour_id() == id) {
@@ -192,14 +194,14 @@ void TourList::sort_by_price() {
     for (TourNode* i = head; i != nullptr; i = i->next) {
         for (TourNode* j = i->next; j != nullptr; j = j->next) {
             if (i->data.get_price_per_person() > j->data.get_price_per_person()) {
-                std::swap(i->data, j->data);
+                swap(i->data, j->data);
             }
         }
     }
 }
 
 void TourList::print_all_tours() const {
-    std::cout << "\n=== DANH SACH TOUR ===\n";
+    cout << "\n=== DANH SACH TOUR ===\n";
     TourNode* current = head;
     while (current != nullptr) {
         current->data.print_tour();
@@ -208,9 +210,9 @@ void TourList::print_all_tours() const {
 }
 
 void TourList::save_to_file() const {
-    std::ofstream out("tour.txt");
+    ofstream out("tour.txt");
     if (!out.is_open()) {
-        std::cout << "Khong mo duoc file tour.txt.\n";
+        cout << "Khong mo duoc file tour.txt.\n";
         return;
     }
 
@@ -225,32 +227,32 @@ void TourList::save_to_file() const {
         current = current->next;
     }
 
-    std::cout << "Da luu danh sach vao file tour.txt\n";
+    cout << "Da luu danh sach vao file tour.txt\n";
 }
 
 void TourList::load_from_file() {
-    std::ifstream in("tour.txt");
+    ifstream in("tour.txt");
     if (!in.is_open()) {
-        std::cout << "Khong tim thay file tour.txt\n";
+        cout << "Khong tim thay file tour.txt\n";
         return;
     }
 
-    std::string line;
-    while (std::getline(in, line)) {
-        std::stringstream ss(line);
-        std::string id;
-        std::string destination;
-        std::string date_string;
-        std::string price_string;
+    string line;
+    while (getline(in, line)) {
+        stringstream ss(line);
+        string id;
+        string destination;
+        string date_string;
+        string price_string;
 
-        std::getline(ss, id, ';');
-        std::getline(ss, destination, ';');
-        std::getline(ss, date_string, ';');
-        std::getline(ss, price_string, ';');
+        getline(ss, id, ';');
+        getline(ss, destination, ';');
+        getline(ss, date_string, ';');
+        getline(ss, price_string, ';');
 
         CDate date;
         date.parse_date(date_string);
-        float price = std::stof(price_string);
+        float price = stof(price_string);
 
         Tour tour(id, destination, date, price);
         TourNode* new_node = new TourNode{tour, nullptr};
@@ -266,6 +268,7 @@ void TourList::load_from_file() {
         }
     }
 
-    std::cout << "Da tai danh sach tour tu file!\n";
+    cout << "Da tai danh sach tour tu file!\n";
 }
+
 
