@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <fstream>
 #include <iostream>
+#include <limits>
 
 Booking::Booking()
     : booking_id("A000"),
