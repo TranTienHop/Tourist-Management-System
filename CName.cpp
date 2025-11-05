@@ -1,59 +1,78 @@
-#include"CName.h"
+#include "CName.h"
 
-CName::CName() {
-    ho = "";
-    tenDem = "";
-    ten = "";
-}
+CName::CName() = default;
 
-CName::CName(string h, string tenDem, string t) {
-    ho = h;
-    tenDem= tenDem;
-    ten = t;
-}
+CName::CName(const std::string& last, const std::string& middle, const std::string& first)
+    : ho(last), ten(first), tenDem(middle) {}
 
-CName::CName(const CName& k) {
-    ho = k.ho;
-    tenDem = k.tenDem;
-    ten = k.ten;
-}
+CName::CName(const CName& other) = default;
 
-istream& operator>>(istream& is, CName& n) {
-    cout << "\nNhap ho: ";
+std::istream& operator>>(std::istream& is, CName& n) {
+    std::cout << "\nNhap ho: ";
     is >> n.ho;
-    cout << "Nhap ten dem: ";
+    std::cout << "Nhap ten dem: ";
     is >> n.tenDem;
-    cout << "Nhap ten: ";
+    std::cout << "Nhap ten: ";
     is >> n.ten;
     return is;
 }
 
-ostream& operator<<(ostream& os, const CName& n) {
-    os << n.ho << " " << n.tenDem << " " << n.ten;
+std::ostream& operator<<(std::ostream& os, const CName& n) {
+    os << n.get_fullname();
     return os;
 }
 
-string CName::getHo() {
+std::string CName::getHo() const {
     return ho;
 }
 
-string CName::getTenDem() {
+std::string CName::getTenDem() const {
     return tenDem;
 }
 
-string CName::getTen() {
+std::string CName::getTen() const {
     return ten;
 }
 
-void CName::setHo(string h) {
-    ho = h;
+void CName::setHo(const std::string& value) {
+    ho = value;
 }
 
-void CName::setTenDem(string td) {
-    tenDem = td;
+void CName::setTenDem(const std::string& value) {
+    tenDem = value;
 }
 
-void CName::setTen(string t) {
-    ten = t;
+void CName::setTen(const std::string& value) {
+    ten = value;
+}
+
+void CName::set_fullname(const std::string& last, const std::string& middle, const std::string& first) {
+    ho = last;
+    tenDem = middle;
+    ten = first;
+}
+
+std::string CName::get_fullname() const {
+    std::string result;
+    if (!ho.empty()) {
+        result += ho;
+    }
+    if (!tenDem.empty()) {
+        if (!result.empty()) {
+            result += " ";
+        }
+        result += tenDem;
+    }
+    if (!ten.empty()) {
+        if (!result.empty()) {
+            result += " ";
+        }
+        result += ten;
+    }
+    return result;
+}
+
+std::string CName::to_string() const {
+    return get_fullname();
 }
 

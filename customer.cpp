@@ -1,20 +1,4 @@
-﻿#include "Customer.h"
-
-// -------------------- Person --------------------
-Person::Person() : mobile(0), email("") {}
-Person::Person(CName n, int m, CDate d, string e) : name(n), mobile(m), dob(d), email(e) {}
-Person::Person(const Person& p) : name(p.name), mobile(p.mobile), dob(p.dob), email(p.email) {}
-Person::~Person() {}
-
-void Person::set_name(CName n) { name = n; }
-void Person::set_mobile(int m) { mobile = m; }
-void Person::set_dob(CDate d) { dob = d; }
-void Person::set_email(string e) { email = e; }
-
-CName Person::get_name() { return name; }
-int Person::get_mobile() { return mobile; }
-CDate Person::get_dob() { return dob; }
-string Person::get_email() { return email; }
+#include "customer.h"
 
 Customer::Customer() : customer_id(""), number_of_people(0), total_spending(0.0) {}
 Customer::Customer(string id, string nameStr, int mobile, string dobStr, string email, int num, double total) {

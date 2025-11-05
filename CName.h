@@ -1,26 +1,31 @@
-#include<iostream>
-using namespace std;
+#pragma once
+
+#include <iostream>
+#include <string>
 
 class CName {
 private:
-    string ho;
-    string ten;
-    string tenDem;
+    std::string ho;
+    std::string ten;
+    std::string tenDem;
 
 public:
     CName();
-    CName(string, string, string);
-    CName(const CName&);
+    CName(const std::string& last, const std::string& middle, const std::string& first);
+    CName(const CName& other);
 
-    friend istream& operator>>(istream& is, CName& n);
-    friend ostream& operator<<(ostream& os, const CName& n);
+    friend std::istream& operator>>(std::istream& is, CName& n);
+    friend std::ostream& operator<<(std::ostream& os, const CName& n);
 
-    string getHo();
-    string getTenDem();
-    string getTen();
+    std::string getHo() const;
+    std::string getTenDem() const;
+    std::string getTen() const;
 
-    void setHo(string);
-    void setTenDem(string);
-    void setTen(string);
+    void setHo(const std::string& value);
+    void setTenDem(const std::string& value);
+    void setTen(const std::string& value);
+
+    void set_fullname(const std::string& last, const std::string& middle, const std::string& first);
+    std::string get_fullname() const;
+    std::string to_string() const;
 };
-#pragma once
