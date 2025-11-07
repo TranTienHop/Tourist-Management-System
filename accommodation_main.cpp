@@ -156,7 +156,6 @@ int main() {
     vector<Accommodation*> list;
     int choice;
 
-    // Ð?c d? li?u t? file lúc kh?i ð?ng
     readFromFile("Accommodation.txt", list);
 
     do {
@@ -196,10 +195,10 @@ int main() {
         }
     } while (choice != 0);
 
-    // Gi?i phóng b? nh?
     for (auto a : list) delete a;
     list.clear();
 
     return 0;
 }
+
 
