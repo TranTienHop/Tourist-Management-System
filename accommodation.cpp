@@ -151,11 +151,6 @@ void readFromFile(const string& filename, vector<Accommodation*>& list) {
     cout << "Da doc " << list.size() << " doi tuong tu file " << filename << endl;
 }
 
-
-
-
-
-
 //CLASS HOTEL 
 Hotel::Hotel():Accommodation() {
 	star_rating = 0;
@@ -664,6 +659,7 @@ void Motel::book_vehicle() {
         cout << "Trang thai xe khong ro.\n";
     }
 }
+
 
 
 
