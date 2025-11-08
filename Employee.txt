@@ -1,8 +1,0 @@
-CustomerService;101;Nguyen Van A;912345678;01/01/1990;a@gmail.com;ChamSocKH;8000000;1.2;150;4.8
-CustomerService;102;Tran Thi B;923456789;12/03/1992;b@gmail.com;ChamSocKH;7800000;1.1;120;4.5
-CustomerService;103;Le Van C;934567890;23/06/1991;c@gmail.com;ChamSocKH;7500000;1.0;110;4.3
-CustomerService;104;Pham Thi D;945678901;09/09/1993;d@gmail.com;ChamSocKH;8200000;1.3;180;4.9
-TourGuide;201;Hoang Van E;956789012;05/02/1989;e@gmail.com;HuongDan;9000000;1.4;Tieng Anh, Nhat;25
-TourGuide;202;Vu Thi F;967890123;10/05/1990;f@gmail.com;HuongDan;8700000;1.2;Tieng Trung;20
-TourGuide;203;Dang Van G;978901234;14/08/1991;g@gmail.com;HuongDan;9200000;1.5;Tieng Han;28
-TourGuide;204;Bui Thi H;989012345;25/12/1992;h@gmail.com;HuongDan;8800000;1.3;Tieng Anh, Han;22
