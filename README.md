@@ -4,27 +4,18 @@ Hệ thống Quản Lý Du Lịch được xây dựng bằng ngôn ngữ C++, �
 Dự án mô phỏng việc quản lý các thành phần trong một hệ thống du lịch.
 
 Chức năng chính
-1. Quản lý công ty
-2. Quản lý người dùng (khách hàng, nhân viên)
-3. Quản lý địa danh
-4. Quản lý dịch vụ
-5. Quản lý thanh toán
-6. Quản lí phương tiện
-7. Quản lí lưu trú (chỗ ở: khách sạn, nhà nghỉ)
+1. Quản lý công ty.
+2. Quản lý người dùng (khách hàng, nhân viên).
+3. Quản lý địa danh.
+4. Quản lý dịch vụ.
+5. Quản lý thanh toán.
+6. Quản lí phương tiện.
+7. Quản lí lưu trú (chỗ ở: khách sạn, nhà nghỉ).
    
-Kiểu dữ liệu hỗ trợ
-     Name (Họ tên)
-     Date (Ngày tháng)
-     Time (Giờ)
-     Address (Địa chỉ)
+Kiểu dữ liệu hỗ trợ: Name, Date, Time, Address. 
 
-Kho dữ liệu (Data Storage)
-  Danh sách dịch vụ
-  Danh sách nhân viên
-  Danh sách khách hàng
-  Danh sách địa danh
-  Danh sách phương tiện
-  Danh sách lưu trú
+Hệ thống sử dụng Linked List để quản lý dữ liệu trong quá trình chạy chương trình và lưu trữ vào file .txt để đảm bảo dữ liệu không bị mất khi thoát chương trình.
+Dữ liệu được tổ chức thành các danh sách: dịch vụ, nhân viên, khách hàng, địa danh, phương tiện, lưu trú.
 ```
 Hệ_Thống_Quản_Lý_Du_Lịch 
  ├─> CôngTy
