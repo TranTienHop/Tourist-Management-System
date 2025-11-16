@@ -25,8 +25,8 @@ Kho dữ liệu (Data Storage)
   Danh sách địa danh
   Danh sách phương tiện
   Danh sách lưu trú
-
-Hệ_Thống_Quản_Lý_Du_Lịch 
+'''
+#Hệ_Thống_Quản_Lý_Du_Lịch 
  ├─> CôngTy
  │     ├─> CongTy.h
  │     └─> CongTy.cpp
@@ -70,3 +70,4 @@ Hệ_Thống_Quản_Lý_Du_Lịch
  │      └─> ...
  │
  └─> Main.cpp
+'''
