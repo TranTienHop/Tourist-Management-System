@@ -17,7 +17,7 @@ Kiểu dữ liệu hỗ trợ: Name, Date, Time, Address.
 Hệ thống sử dụng **"LINKED LIST"** để quản lý dữ liệu trong quá trình chạy chương trình và lưu trữ vào file .txt để đảm bảo dữ liệu không bị mất khi thoát chương trình.
 Dữ liệu được tổ chức thành các danh sách: dịch vụ, nhân viên, khách hàng, địa danh, phương tiện, lưu trú.
 ```
-Hệ_Thống_Quản_Lý_Du_Lịch 
+Sơ đồ phân cấp thư mục & file
  ├─> CôngTy
  │     ├─> CongTy.h
  │     └─> CongTy.cpp
