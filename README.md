@@ -25,8 +25,8 @@ Kho dữ liệu (Data Storage)
   Danh sách địa danh
   Danh sách phương tiện
   Danh sách lưu trú
-'''
-#Hệ_Thống_Quản_Lý_Du_Lịch 
+```
+Hệ_Thống_Quản_Lý_Du_Lịch 
  ├─> CôngTy
  │     ├─> CongTy.h
  │     └─> CongTy.cpp
@@ -46,7 +46,7 @@ Kho dữ liệu (Data Storage)
  ├─> DịchVụ
  │      ├─> ĐặtDịchVụ
  │      │      ├─> DatDichVu.h
- │      │      └─> DatDichVu.cpp
+ │      │      └> DatDichVu.cpp
  │      ├─> LưuTrú
  │      │      ├─> LuuTru.h
  │      │      └─> LuuTru.cpp
@@ -58,10 +58,10 @@ Kho dữ liệu (Data Storage)
  │             └─> ThanhToan.cpp
  │
  ├─> Kiểu dữ liệu tự hỗ trợ (Support)
- │      ├─> SP_Address.h      ──> SP_Address.cpp
- │      ├─> SP_Date.h         ──> SP_Date.cpp
- │      ├─> SP_Name.h         ──> SP_Name.cpp
- │      └─> SP_Time.h         ──> SP_Time.cpp
+ │      ├─> SP_Address.h  ──> SP_Address.cpp
+ │      ├─> SP_Date.h     ──> SP_Date.cpp
+ │      ├─> SP_Name.h     ──> SP_Name.cpp
+ │      └─> SP_Time.h     ──> SP_Time.cpp
  │
  ├─> Data
  │      ├─> ds_dich_vu
@@ -70,4 +70,5 @@ Kho dữ liệu (Data Storage)
  │      └─> ...
  │
  └─> Main.cpp
-'''
+```
+
