@@ -43,7 +43,7 @@ Hệ_Thống_Quản_Lý_Du_Lịch
  │            ├─> NhanVien.h
  │            └─> NhanVien.cpp
  │
- ├─>  DịchVụ
+ ├─> DịchVụ
  │      ├─> ĐặtDịchVụ
  │      │      ├─> DatDichVu.h
  │      │      └─> DatDichVu.cpp
@@ -58,10 +58,10 @@ Hệ_Thống_Quản_Lý_Du_Lịch
  │             └─> ThanhToan.cpp
  │
  ├─> Kiểu dữ liệu tự hỗ trợ (Support)
- │      ├─> SP_Address.h  ──> SP_Address.cpp
- │      ├─> SP_Date.h     ──> SP_Date.cpp
- │      ├─> SP_Name.h     ──> SP_Name.cpp
- │      └─> SP_Time.h     ──> SP_Time.cpp
+ │      ├─> SP_Address.h      ──> SP_Address.cpp
+ │      ├─> SP_Date.h         ──> SP_Date.cpp
+ │      ├─> SP_Name.h         ──> SP_Name.cpp
+ │      └─> SP_Time.h         ──> SP_Time.cpp
  │
  ├─> Data
  │      ├─> ds_dich_vu
@@ -70,6 +70,3 @@ Hệ_Thống_Quản_Lý_Du_Lịch
  │      └─> ...
  │
  └─> Main.cpp
-Danh sách khách hàng
-
-Các danh sách lưu trữ khác
