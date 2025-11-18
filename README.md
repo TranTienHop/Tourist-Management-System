@@ -1,4 +1,4 @@
-# Tourist-Management-System (DSA - OOP)
+# Tourist-Management-System
 
 Hệ thống Quản Lý Du Lịch được xây dựng bằng ngôn ngữ C++, áp dụng mô hình hướng đối tượng (OOP).
 Dự án mô phỏng việc quản lý các thành phần trong một hệ thống du lịch.
