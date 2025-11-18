@@ -1,0 +1,9 @@
+ChamSoc
+1;Nguyen Van A;PhongChamSoc;912345678;10/05/1995;@gmail.com;5000000;1.2;5;50;2000000
+2;Tran Thi B;PhongChamSoc;934567890;15/06/1997;@gmail.com;4500000;1.0;3;40;1500000
+3;Le Van C;PhongChamSoc;987654321;20/12/1992;@gmail.com;4800000;1.1;6;45;1800000
+
+HuongDan
+4;Pham Thi D;PhongHDV;945678123;22/03/1990;@gmail.com;6000000;1.1;8;English;12
+5;Nguyen Thi E;PhongHDV;932145678;18/09/1994;@gmail.com;5500000;1.0;4;French;10
+6;Tran Van F;PhongHDV;976543210;25/11/1991;@gmail.com;5800000;1.2;7;German;15
