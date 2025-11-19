@@ -1,6 +1,6 @@
 #include "validator.h"
 
-bool lienHe::kiemTraSDT(const string& sdt) {
+bool input_validator::kiemTraSDT(const string& sdt) {
 	if (sdt.length() != 10) return false;
     if (sdt[0] != '0') return false;
 
@@ -10,7 +10,7 @@ bool lienHe::kiemTraSDT(const string& sdt) {
     return true;
 }
 
-bool lienHe::kiemTraEmail(const string& email) {
+bool input_validator::kiemTraEmail(const string& email) {
 	if (email.empty()) return false;
     if (email.find(' ') != string::npos) return false;
 
@@ -19,4 +19,5 @@ bool lienHe::kiemTraEmail(const string& email) {
 
     return (at != string::npos && dot != string::npos && dot > at + 1);
 }
+
 
