@@ -95,7 +95,10 @@ public:
     void doc_file();
     void giai_phong();
     void hien_thi_menu_khach_hang();
+	NodeKhachHang* getHead() { return head; }
+
 
 };
+
 
 
