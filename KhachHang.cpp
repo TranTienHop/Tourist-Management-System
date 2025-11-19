@@ -9,26 +9,6 @@ Nguoi::~Nguoi() {
 
 }
 
-bool Nguoi::kiemTraSDT(const string& sdt) {
-	if (sdt.length() != 10) return false;
-    if (sdt[0] != '0') return false;
-
-    for (char c : sdt) {
-        if (!isdigit(c)) return false;
-    }
-    return true;
-}
-
-bool Nguoi::kiemTraEmail(const string& email) {
-	if (email.empty()) return false;
-    if (email.find(' ') != string::npos) return false;
-
-    size_t at = email.find('@');
-    size_t dot = email.find('.', at + 1);
-
-    return (at != string::npos && dot != string::npos && dot > at + 1);
-}
-
 void Nguoi::set_ten(const Name& ten) {
     this->ten = ten;
 }
@@ -106,10 +86,10 @@ void KhachHang::nhap() {
         cout << "Nhap so dien thoai: ";
         cin >> this->so_dien_thoai;
 
-        if (!kiemTraSDT(this->so_dien_thoai)) {
+        if (!lienHe::kiemTraSDT(this->so_dien_thoai)) {
             cout << "So dien thoai phai du 10 so va bat dau bang chu so 0! Moi nhap lai.\n";
         }
-    } while (!kiemTraSDT(this->so_dien_thoai));
+    } while (!lienHe::kiemTraSDT(this->so_dien_thoai));
     cin.ignore();
 
     cout << "Nhap ngay sinh:\n";
@@ -120,10 +100,10 @@ void KhachHang::nhap() {
         cout << "Nhap email: ";
         getline(cin, this->email);
 
-        if (!kiemTraEmail(this->email)) {
+        if (!lienHe::kiemTraEmail(this->email)) {
             cout << "Email khong hop le! (vi du: name@gmail.com)\n";
         }
-    } while (!kiemTraEmail(this->email));
+    } while (!lienHe::kiemTraEmail(this->email));
 
     cout << "Nhap so nguoi trong doan: ";
     cin >> this->so_nguoi;
@@ -152,10 +132,10 @@ void KhachHang::cap_nhat() {
         cout << "Nhap so dien thoai moi: ";
         cin >> new_sdt;
 
-        if (!kiemTraSDT(new_sdt)) {
+        if (!lienHe::kiemTraSDT(new_sdt)) {
             cout << "So dien thoai khong hop le!\n";
         }
-    } while (!kiemTraSDT(new_sdt));
+    } while (!lienHe::kiemTraSDT(new_sdt));
 
     this->so_dien_thoai = new_sdt;
 }
@@ -473,3 +453,4 @@ void DanhSachKhachHang::hien_thi_menu_khach_hang() {
         }
     } while (choice != 0);
 }
+
