@@ -74,6 +74,8 @@ public:
     void cap_nhat(string);
     DatDichVu* tim_kiem(string);
     void hien_thi_menu_dich_vu();
+	NodeDichVu* getHead() { return head; }
+
 
     void doc_file(DanhSachKhachHang& dsKH,
         DanhSachNhanVien& dsNV,
@@ -82,3 +84,4 @@ public:
         DanhSachLuuTru& dsLT,
         DanhSachThanhToan& dsTT);
 };
+
