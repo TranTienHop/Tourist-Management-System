@@ -7,6 +7,7 @@
 #include <iomanip>
 #include <typeinfo>
 #include "SP_Address.h"
+#include "validator"
 
 using namespace std;
 
@@ -139,3 +140,4 @@ public:
     void kt_trang_thai_theo_ma(string);
     void hien_thi_menu_luu_tru();
 };
+
