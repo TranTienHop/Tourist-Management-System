@@ -86,10 +86,10 @@ void KhachHang::nhap() {
         cout << "Nhap so dien thoai: ";
         cin >> this->so_dien_thoai;
 
-        if (!lienHe::kiemTraSDT(this->so_dien_thoai)) {
+        if (!input_validator::kiemTraSDT(this->so_dien_thoai)) {
             cout << "So dien thoai phai du 10 so va bat dau bang chu so 0! Moi nhap lai.\n";
         }
-    } while (!lienHe::kiemTraSDT(this->so_dien_thoai));
+    } while (!input_validator::kiemTraSDT(this->so_dien_thoai));
     cin.ignore();
 
     cout << "Nhap ngay sinh:\n";
@@ -100,10 +100,10 @@ void KhachHang::nhap() {
         cout << "Nhap email: ";
         getline(cin, this->email);
 
-        if (!lienHe::kiemTraEmail(this->email)) {
+        if (!input_validator::kiemTraEmail(this->email)) {
             cout << "Email khong hop le! (vi du: name@gmail.com)\n";
         }
-    } while (!lienHe::kiemTraEmail(this->email));
+    } while (!input_validator::kiemTraEmail(this->email));
 
     cout << "Nhap so nguoi trong doan: ";
     cin >> this->so_nguoi;
@@ -132,10 +132,10 @@ void KhachHang::cap_nhat() {
         cout << "Nhap so dien thoai moi: ";
         cin >> new_sdt;
 
-        if (!lienHe::kiemTraSDT(new_sdt)) {
+        if (!input_validator::kiemTraSDT(new_sdt)) {
             cout << "So dien thoai khong hop le!\n";
         }
-    } while (!lienHe::kiemTraSDT(new_sdt));
+    } while (!input_validator::kiemTraSDT(new_sdt));
 
     this->so_dien_thoai = new_sdt;
 }
@@ -453,4 +453,5 @@ void DanhSachKhachHang::hien_thi_menu_khach_hang() {
         }
     } while (choice != 0);
 }
+
 
