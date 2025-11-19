@@ -139,6 +139,9 @@ public:
     void bubble_sort_theo_trang_thai();
     void kt_trang_thai_theo_ma(string);
     void hien_thi_menu_luu_tru();
+	NodeLuuTru* getHead() { return head; }
+
 };
+
 
 
