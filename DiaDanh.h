@@ -58,8 +58,11 @@ public:
 	void bubble_sort_ngay();
 	void doc_file();
 	void hien_thi_menu_dia_danh();
+	NodeDiaDanh* getHead() { return head; }
+
 
 };
+
 
 
 
