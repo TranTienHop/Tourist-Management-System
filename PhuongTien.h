@@ -157,7 +157,9 @@ public:
     void bubble_sort_theo_trang_thai();
     void doc_file();
     void hien_thi_menu_phuong_tien();
+	NodePhuongTien getHead() { return head; }
 
 
 };
+
 
