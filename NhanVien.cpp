@@ -85,46 +85,57 @@ double NhanVienChamSoc::get_thuong() {
 }
 
 void NhanVienChamSoc::nhap() {
-    cout << "\n=== NHAP THONG TIN NHAN VIEN CHAM SOC ===";
+    cout << "\n=== NHAP THONG TIN NHAN VIEN CHAM SOC ===\n";
 
-    cout << "\nNhap ma nhan vien: ";
+    cout << "Nhap ma nhan vien: ";
     cin >> ma_nhan_vien;
     cin.ignore();
 
-    cout << "\nNhap ho ten:\n";
+    cout << "Nhap ho ten:\n";
     cin >> ten;  
 
-    cout << "\nNhap so dien thoai: ";
-    cin >> so_dien_thoai;
+    do {
+        cout << "Nhap so dien thoai: ";
+        cin >> this->so_dien_thoai;
+
+        if (!input_validator::kiemTraSDT(this->so_dien_thoai)) {
+            cout << "So dien thoai phai du 10 so va bat dau bang chu so 0! Moi nhap lai.\n";
+        }
+    } while (!input_validator::kiemTraSDT(this->so_dien_thoai));
     cin.ignore();
 
-    cout << "\nNhap ngay sinh:\n";
-    cin >> ngay_sinh; 
+    cout << "Nhap ngay sinh:\n";
+    cin >> this->ngay_sinh;
+    cin.ignore();
 
-    cout << "\nNhap email: ";
-    getline(cin, email);
+    do {
+        cout << "Nhap email: ";
+        getline(cin, this->email);
 
-    cout << "\nNhap phong ban: ";
+        if (!input_validator::kiemTraEmail(this->email)) {
+            cout << "Email khong hop le! (vi du: name@gmail.com)\n";
+        }
+    } while (!input_validator::kiemTraEmail(this->email));
+
+    cout << "Nhap phong ban: ";
     getline(cin, phong_ban);
 
-    cout << "\nNhap luong co ban: ";
+    cout << "Nhap luong co ban: ";
     cin >> luong_co_ban;
 
-    cout << "\nNhap he so luong: ";
+    cout << "Nhap he so luong: ";
     cin >> he_so_luong;
 
-    cout << "\nNhap kinh nghiem (so nam): ";
+    cout << "Nhap kinh nghiem (so nam): ";
     cin >> kinh_nghiem;
 
-    cout << "\nNhap so khach phu trach: ";
+    cout << "Nhap so khach phu trach: ";
     cin >> so_khach_phu_trach;
 
-    cout << "\nNhap thuong: ";
+    cout << "Nhap thuong: ";
     cin >> thuong;
 
     luong = tinh_luong();
-
-    cout << "\n=== Da nhap thong tin thanh cong! ===\n";
 }
 
 void NhanVienChamSoc::hien_thi() {
@@ -191,46 +202,61 @@ int HuongDanVien::get_so_tour_da_dan() {
 }
 
 void HuongDanVien::nhap() {
-    cout << "\nNhap ma nhan vien: ";
+	cout << "\n=== NHAP THONG TIN HUONG DAN VIEN ===\n";
+    cout << "Nhap ma nhan vien: ";
     cin >> ma_nhan_vien;
     cin.ignore();
 
-    cout << "\nNhap ho ten:\n";
+    cout << "Nhap ho ten:\n";
     cin >> ten;
     cin.ignore();
 
-    cout << "\nNhap ngay sinh:\n";
+    cout << "Nhap ngay sinh:\n";
     cin >> ngay_sinh;
 
-    cout << "\nNhap so dien thoai: ";
-    cin >> so_dien_thoai;
+    do {
+        cout << "Nhap so dien thoai: ";
+        cin >> this->so_dien_thoai;
+
+        if (!input_validator::kiemTraSDT(this->so_dien_thoai)) {
+            cout << "So dien thoai phai du 10 so va bat dau bang chu so 0! Moi nhap lai.\n";
+        }
+    } while (!input_validator::kiemTraSDT(this->so_dien_thoai));
     cin.ignore();
 
-    cout << "\nNhap email: ";
-    getline(cin, email);
 
-    cout << "\nNhap phong ban: ";
+    do {
+        cout << "Nhap email: ";
+        getline(cin, this->email);
+
+        if (!input_validator::kiemTraEmail(this->email)) {
+            cout << "Email khong hop le! (vi du: name@gmail.com)\n";
+        }
+    } while (!input_validator::kiemTraEmail(this->email));
+
+    cout << "Nhap phong ban: ";
     getline(cin, phong_ban);
 
-    cout << "\nNhap luong co ban: ";
+    cout << "Nhap luong co ban: ";
     cin >> luong_co_ban;
 
-    cout << "\nNhap he so luong: ";
+    cout << "Nhap he so luong: ";
     cin >> he_so_luong;
 
-    cout << "\nNhap ngon ngu huong dan: ";
+    cout << "Nhap ngon ngu huong dan: ";
     cin.ignore();
     getline(cin, ngon_ngu);
 
-    cout << "\nNhap so tour da dan: ";
+    cout << "Nhap so tour da dan: ";
     cin >> so_tour_da_dan;
 
-    cout << "\nNhap so nam kinh nghiem: ";
+    cout << "Nhap so nam kinh nghiem: ";
     cin >> kinh_nghiem;
 
     luong = tinh_luong();
     cin.ignore();
 }
+
 
 
 void HuongDanVien::hien_thi() {
@@ -569,3 +595,4 @@ void DanhSachNhanVien::hien_thi_menu_nhan_vien() {
 
 
 }
+
