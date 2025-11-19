@@ -1,4 +1,4 @@
-#include "SP_LienHe.h"
+#include "validator.h"
 
 bool lienHe::kiemTraSDT(const string& sdt) {
 	if (sdt.length() != 10) return false;
@@ -19,3 +19,4 @@ bool lienHe::kiemTraEmail(const string& email) {
 
     return (at != string::npos && dot != string::npos && dot > at + 1);
 }
+
