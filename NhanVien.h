@@ -1,5 +1,6 @@
 ﻿#pragma once
 #include"KhachHang.h"
+#include "validator.h"
 using namespace std;
 
 // class nguoi da co o file khach hang
@@ -111,4 +112,5 @@ public:
     void doc_file(); 
     void giai_phong();
     void hien_thi_menu_nhan_vien();
+
 };
