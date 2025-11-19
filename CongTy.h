@@ -6,6 +6,8 @@
 #include"DiaDanh.h"
 #include"LuuTru.h"
 #include"DatDichVu.h"
+#include"DoanhThu.h"
+#include"ThongKe.h"
 #include <iostream>
 #include <string>
 using namespace std;
@@ -40,4 +42,7 @@ public:
 	void hien_thi_menu_luu_tru();
 	void hien_thi_menu_thanh_toan();
 	void hien_thi_menu_dich_vu();
+	void hien_thi_menu_doanh_thu();
+	void hien_thi_menu_thong_ke();
+
 };
