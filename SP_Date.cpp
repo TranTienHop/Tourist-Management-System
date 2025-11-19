@@ -38,7 +38,7 @@ bool Date::xetNgayHopLe(int d, int m, int y) {
 
 istream& operator>>(istream& is, Date& a) {
      while (true) {
-        cout << "Nhap ngay: ";
+        cout << "\tNhap ngay: ";
         is >> a.ngay;
         
         if (is.fail()) {
@@ -54,7 +54,7 @@ istream& operator>>(istream& is, Date& a) {
     }
     
     while (true) {
-        cout << "\nNhap thang: ";
+        cout << "\tNhap thang: ";
         is >> a.thang;
         
         if (is.fail()) {
@@ -70,7 +70,7 @@ istream& operator>>(istream& is, Date& a) {
     }
 
 	while (true) {
-        cout << "\nNhap nam: ";
+        cout << "\tNhap nam: ";
         is >> a.nam;
         
         if (is.fail()) {
@@ -154,4 +154,5 @@ bool Date::operator==(const Date& date) {
 string Date::chuoi_ngay_thang_nam() {
     return to_string(this->ngay) + "/" + to_string(this->thang) + "/" + to_string(this->nam);
 }
+
 
