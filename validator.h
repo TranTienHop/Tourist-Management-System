@@ -5,8 +5,9 @@
 
 using namespace std;
 
-class lienHe {
+class input_validator {
 	public:
 		static bool kiemTraSDT(const string& sdt);
 		static bool kiemTraEmail(const string& email);
 };
+
