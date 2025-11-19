@@ -81,4 +81,7 @@ public:
     void bubble_sort_loai();
     void doc_file();
     void hien_thi_menu_thanh_toan();
+	NodeThanhToan* getHead() { return head; }
+
+
 };
