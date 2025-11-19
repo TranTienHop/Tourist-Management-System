@@ -8,6 +8,7 @@
 #include <typeinfo>
 #include "SP_Name.h"
 #include "SP_Date.h"
+#include "SP_LienHe.h"
 using namespace std;
 
 class Nguoi {
@@ -96,3 +97,4 @@ public:
     void hien_thi_menu_khach_hang();
 
 };
+
