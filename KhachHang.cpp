@@ -446,12 +446,12 @@ void DanhSachKhachHang::hien_thi_menu_khach_hang() {
             break;
         case 0:
             cout << "Thoat chuong trinh.\n";
-            this->giai_phong();
             break;
         default:
             cout << "Lua chon khong hop le!\n";
         }
     } while (choice != 0);
 }
+
 
 
