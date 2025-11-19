@@ -1,4 +1,7 @@
 #include"CongTy.h"
+#include"DoanhThu.h"
+#include"ThongKe.h"
+#include <iomanip>
 using namespace std;
 
 CongTy::CongTy() {
@@ -43,6 +46,13 @@ void CongTy::hien_thi_menu_thanh_toan() {
 }
 void CongTy::hien_thi_menu_dich_vu() {
 	ds_dich_vu.hien_thi_menu_dich_vu();
+}
+void CongTy::hien_thi_menu_doanh_thu() {
+	DoanhThu::hien_thi_menu_doanh_thu(ds_dich_vu, ds_thanh_toan, ds_khach_hang);
+}
+
+void CongTy::hien_thi_menu_thong_ke() {
+	ThongKe::hien_thi_menu_thong_ke(ds_khach_hang, ds_nhan_vien, ds_phuong_tien, ds_dia_danh, ds_luu_tru, ds_dich_vu);
 }
 
 void CongTy::nhap() {
@@ -447,3 +457,4 @@ void CongTy::hien_thi_menu_admin() {
 		}
 	} while (che_do != 0);
 }
+
