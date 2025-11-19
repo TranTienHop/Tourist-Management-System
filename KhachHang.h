@@ -16,6 +16,8 @@ protected:
     string so_dien_thoai;
     Date ngay_sinh;
     string email;
+    bool kiemTraSDT(const string& sdt);
+	bool kiemTraEmail(const string& email);
 
 public:
     Nguoi();
