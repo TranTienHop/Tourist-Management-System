@@ -56,6 +56,7 @@ public:
     void hien_thi();
     void chinh_sua();
     void cap_nhat();
+	void ghi_file(ofstream  &file);
 };
 
 struct NodeThanhToan {
@@ -80,8 +81,8 @@ public:
     void selection_sort_so_tien();
     void bubble_sort_loai();
     void doc_file();
+	void ghi_file();
     void hien_thi_menu_thanh_toan();
 	NodeThanhToan* getHead() { return head; }
-
-
 };
+
