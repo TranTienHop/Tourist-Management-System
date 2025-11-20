@@ -152,6 +152,30 @@ void ThanhToan::cap_nhat() {
     }
 }
 
+void ThanhToan::ghi_file(ofstream &file) {
+	file << ma_thanh_toan << ";"
+         << ma_dat_dich_vu << ";"
+         << so_tien << ";"
+         << loai << ";";
+         
+    if (loai == TIEN_MAT) {
+        file << du_lieu.so_tien_mat << ";";
+    }
+    else if (loai == THE) {
+        file << du_lieu.so_the << ";";
+    }
+    else { // VI_DIEN_TU
+        file << du_lieu.tai_khoan_vi << ";";
+    }
+    
+    file << ngay_thanh_toan.get_ngay() << "/"
+         << ngay_thanh_toan.get_thang() << "/"
+         << ngay_thanh_toan.get_nam() << ";";
+         
+    file << da_thanh_toan;
+    file << "\n";
+}
+
 // ----------------- DANH SÁCH -----------------
 
 DanhSachThanhToan::DanhSachThanhToan() {
@@ -314,6 +338,24 @@ void DanhSachThanhToan::bubble_sort_loai() {
     } while (swapped);
 }
 
+void DanhSachThanhToan::ghi_file() {
+    ofstream file("ds_thanh_toan.txt");
+
+    if (!file.is_open()) {
+        cout << "Khong mo duoc file!\n";
+        return;
+    }
+
+    NodeThanhToan* p = head;
+    while (p != nullptr) {
+        p->data->ghi_file(file);
+        p = p->next;
+    }
+
+    file.close();
+    cout << "Da ghi file thanh cong!\n";
+}
+
 void DanhSachThanhToan::doc_file() {
     ifstream file("ds_thanh_toan.txt");
     if (!file.is_open()) return;
@@ -364,7 +406,7 @@ void DanhSachThanhToan::hien_thi_menu_thanh_toan() {
         cout << "7. Sap xep theo ngay thanh toan\n";
         cout << "8. Sap xep theo so tien\n";
         cout << "9. Sap xep theo loai thanh toan\n";
-        cout << "10. Ghi danh sach ra file (dang bao tri)\n";
+        cout << "10. Ghi danh sach ra file\n";
         cout << "0. Thoat\n";
         cout << "Nhap lua chon: ";
         cin >> choice;
@@ -428,6 +470,10 @@ void DanhSachThanhToan::hien_thi_menu_thanh_toan() {
             cout << "Da sap xep theo loai thanh toan\n";
             this->hien_thi();
             break;
+        case 10:
+            this->ghi_file();
+    	    cout << "Da ghi danh sach ra file thanh cong!\n";
+    	    break;
         case 0:
             cout << "Thoat chuong trinh.\n";
             break;
@@ -437,4 +483,5 @@ void DanhSachThanhToan::hien_thi_menu_thanh_toan() {
 
     } while (choice != 0);
 }
+
 
