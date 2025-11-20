@@ -1,4 +1,4 @@
-﻿#include "ThanhToan.h"
+#include "ThanhToan.h"
 #include "DatDichVu.h"
 #include "KhachHang.h"
 #include "DoanhThu.h"
@@ -32,7 +32,7 @@ void DoanhThu::hien_thi_menu_doanh_thu(DanhSachDichVu& ds_dich_vu,
             for (NodeDichVu* p = ds_dich_vu.getHead(); p; p = p->next) {
                 if (p->data && p->data->get_tong_tien() > 0) {
                     // Kiểm tra xem có thanh toán tương ứng không
-                    ThanhToan* tt = ds_thanh_toan.tim_kiem(p->data->get_ma_dich_vu());
+                    ThanhToan* tt = ds_thanh_toan.tim_kiem_theo_ma_dich_vu(p->data->get_ma_dich_vu());
                     if (tt && tt->lay_trang_thai()) {
                         tong += p->data->get_tong_tien();
                     }
@@ -168,7 +168,7 @@ void DoanhThu::tinh_tong_doanh_thu(DanhSachDichVu& ds_dich_vu, DanhSachThanhToan
     tong_doanh_thu = 0;
     for (NodeDichVu* p = ds_dich_vu.getHead(); p; p = p->next) {
         if (p->data && p->data->get_tong_tien() > 0) {
-            ThanhToan* tt = ds_thanh_toan.tim_kiem(p->data->get_ma_dich_vu());
+            ThanhToan* tt = ds_thanh_toan.tim_kiem_theo_ma_dich_vu(p->data->get_ma_dich_vu());
             if (tt && tt->lay_trang_thai()) {
                 tong_doanh_thu += p->data->get_tong_tien();
             }
