@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 #include <iostream>
 #include <string>
 #include <sstream>  
@@ -23,7 +23,7 @@ protected:
     string so_dien_thoai;
     double gia;
     TrangThai trang_thai;
-	static string trang_thai_to_string(TrangThai tt);
+    static string trang_thai_to_string(TrangThai tt);
 
 public:
     LuuTru();
@@ -52,8 +52,8 @@ public:
     virtual void kt_trang_thai() = 0;
     virtual void cap_nhat_trang_thai() = 0;
 
-    virtual void doc_file(string line) = 0; 
-	virtual void ghi_file(ofstream &file) = 0;
+    virtual void doc_file(string line) = 0;
+    virtual void ghi_file(ofstream& file) = 0;
 };
 
 class KhachSan : public LuuTru {
@@ -81,7 +81,7 @@ public:
     void cap_nhat_trang_thai();
 
     void doc_file(string line);
-	void ghi_file(ofstream &file);
+    void ghi_file(ofstream& file);
 };
 
 class NhaNghi : public LuuTru {
@@ -114,7 +114,7 @@ public:
     void cap_nhat_trang_thai();
 
     void doc_file(string line);
-	void ghi_file(ofstream &file);
+    void ghi_file(ofstream& file);
 };
 
 struct NodeLuuTru {
@@ -137,8 +137,9 @@ public:
     void chinh_sua(string ma_luu_tru);
     LuuTru* tim_kiem(string ma_luu_tru);
     void hien_thi();
+
+    void ghi_file();
     void doc_file();
-	void ghi_file(ofstream &file);
 
     void insertion_sort_theo_gia();
     void bubble_sort_theo_trang_thai();
@@ -147,7 +148,6 @@ public:
 	NodeLuuTru* getHead() { return head; }
 
 };
-
 
 
 
