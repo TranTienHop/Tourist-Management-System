@@ -1,4 +1,4 @@
-﻿#include "KhachHang.h"
+#include "KhachHang.h"
 #include "NhanVien.h"
 #include "PhuongTien.h"
 #include "DiaDanh.h"
