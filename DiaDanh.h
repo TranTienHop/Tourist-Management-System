@@ -57,15 +57,7 @@ public:
 	void selection_sort_dia_danh();
 	void bubble_sort_ngay();
 	void doc_file();
+	void ghi_file();
 	void hien_thi_menu_dia_danh();
 	NodeDiaDanh* getHead() { return head; }
-
-
 };
-
-
-
-
-
-
-
