@@ -278,6 +278,31 @@ void DanhSachKhachHang::doc_file() {
     file.close();
 }
 
+void DanhSachKhachHang::ghi_file() {
+    ofstream file("ds_khach_hang.txt");
+    if (!file.is_open()) {
+        cout << "Khong mo duoc file de ghi!\n";
+        return;
+    }
+
+    NodeKhachHang* p = head;
+    while (p != nullptr) {
+        KhachHang* kh = p->data;
+        file << kh->get_ma_khach_hang() << ";"
+            << kh->get_ten().get_ho_ten() << ";"
+            << kh->get_so_dien_thoai() << ";"
+            << kh->get_email() << ";"
+            << kh->get_ngay_sinh().chuoi_ngay_thang_nam() << ";"
+            << kh->get_so_nguoi() << ";"
+            << fixed << setprecision(0) << kh->get_tong_chi_tieu()
+            << "\n";
+        p = p->next;
+    }
+
+    file.close();
+    cout << "Da ghi file thanh cong!\n";
+}
+
 void DanhSachKhachHang::hien_thi() {
     if (!this->head) {
         cout << "Danh sach khach hang rong.\n";
@@ -391,7 +416,7 @@ void DanhSachKhachHang::hien_thi_menu_khach_hang() {
         cout << "\n5. Chinh sua thong tin khach hang";
         cout << "\n6. Sap xep theo tong chi tieu";
         cout << "\n7. Sap xep theo ten";
-        cout << "\n8. Ghi danh sach ra file (dang bao tri)";
+        cout << "\n8. Ghi danh sach ra file ";
         cout << "\n0. Thoat";
         cout << "\n==============================";
         cout << "\nNhap lua chon: ";
@@ -444,6 +469,11 @@ void DanhSachKhachHang::hien_thi_menu_khach_hang() {
             cout << "Da sap xep theo ten!\n";
             this->hien_thi();
             break;
+        case 8: {
+            this->ghi_file();
+            cout << "Da ghi danh sach ra file thanh cong!\n";
+            break;
+        }
         case 0:
             cout << "Thoat chuong trinh.\n";
             break;
@@ -452,6 +482,5 @@ void DanhSachKhachHang::hien_thi_menu_khach_hang() {
         }
     } while (choice != 0);
 }
-
 
 
