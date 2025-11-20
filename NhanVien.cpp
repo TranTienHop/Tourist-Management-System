@@ -1,4 +1,4 @@
-﻿#include"NhanVien.h"
+#include"NhanVien.h"
 
 NhanVien::NhanVien() {
 	this->ma_nhan_vien = 0;
@@ -485,6 +485,78 @@ void HuongDanVien::doc_file(string line) {
 
     luong = tinh_luong();
 }
+
+void NhanVienChamSoc::ghi_file(ofstream& file) {
+    file << ma_nhan_vien << ";"
+        << ten.get_ho_ten() << ";"
+        << phong_ban << ";"
+        << so_dien_thoai << ";"
+        << ngay_sinh.chuoi_ngay_thang_nam() << ";"
+        << email << ";"
+        << fixed << setprecision(0) << luong_co_ban << ";"
+        << he_so_luong << ";"
+        << kinh_nghiem << ";"
+        << so_khach_phu_trach << ";"
+        << fixed << setprecision(0) << thuong
+        << "\n";
+}
+
+void HuongDanVien::ghi_file(ofstream& file) {
+    file << ma_nhan_vien << ";"
+        << ten.get_ho_ten() << ";"
+        << phong_ban << ";"
+        << so_dien_thoai << ";"
+        << ngay_sinh.chuoi_ngay_thang_nam() << ";"
+        << email << ";"
+        << fixed << setprecision(0) << luong_co_ban << ";"
+        << he_so_luong << ";"
+        << kinh_nghiem << ";"
+        << ngon_ngu << ";"
+        << so_tour_da_dan
+        << "\n";
+}
+
+void DanhSachNhanVien::ghi_file() {
+    ofstream file("ds_nhan_vien.txt");
+    if (!file.is_open()) {
+        cout << "Khong mo duoc file de ghi!\n";
+        return;
+    }
+
+    // Ghi NhanVienChamSoc
+    bool hasChamSoc = false;
+    NodeNhanVien* p = head;
+    while (p) {
+        if (dynamic_cast<NhanVienChamSoc*>(p->data)) {
+            if (!hasChamSoc) {
+                file << "ChamSoc\n";
+                hasChamSoc = true;
+            }
+            NhanVienChamSoc* nv = dynamic_cast<NhanVienChamSoc*>(p->data);
+            nv->ghi_file(file);
+        }
+        p = p->next;
+    }
+
+    // Ghi HuongDanVien
+    bool hasHuongDan = false;
+    p = head;
+    while (p) {
+        if (dynamic_cast<HuongDanVien*>(p->data)) {
+            if (!hasHuongDan) {
+                file << "\nHuongDan\n";
+                hasHuongDan = true;
+            }
+            HuongDanVien* nv = dynamic_cast<HuongDanVien*>(p->data);
+            nv->ghi_file(file);
+        }
+        p = p->next;
+    }
+
+    file.close();
+    cout << "Da ghi file thanh cong!\n";
+}
+
 void DanhSachNhanVien::giai_phong() {
     while (head) {
         NodeNhanVien* temp = head;
@@ -508,7 +580,7 @@ void DanhSachNhanVien::hien_thi_menu_nhan_vien() {
         cout << "\n5. Chinh sua nhan vien";
         cout << "\n6. Sap xep theo ten";
         cout << "\n7. Sap xep theo luong";
-        cout << "\n8. Ghi danh sach ra file (dang bao tri)";
+        cout << "\n8. Ghi danh sach ra file";
         cout << "\n0. Thoat";
         cout << "\n==============================";
         cout << "\nNhap lua chon: ";
@@ -581,6 +653,11 @@ void DanhSachNhanVien::hien_thi_menu_nhan_vien() {
             cout << "Da sap xep theo luong!\n";
             this->hien_thi();
             break;
+        case 8: {
+            this->ghi_file();
+            cout << "Da ghi danh sach ra file thanh cong!\n";
+            break;
+        }
 
         case 0:
             cout << "Thoat chuong trinh.\n";
