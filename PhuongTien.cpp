@@ -1,4 +1,4 @@
-﻿#include "PhuongTien.h"
+#include "PhuongTien.h"
 
 PhuongTien::PhuongTien() {
     ma_phuong_tien = "";
@@ -690,6 +690,95 @@ void XeHoi::doc_file(string line) {
         so_ghe = XE_5_CHO;
 }
 
+// ==================== GHI FILE ====================
+void MayBay::ghi_file(ofstream& file) {
+    file << ma_phuong_tien << ";"
+        << ten_phuong_tien << ";"
+        << fixed << setprecision(0) << gia_thue << ";"
+        << (trang_thai == CON_TRONG ? "CON_TRONG" : (trang_thai == DA_DAT ? "DA_DAT" : "DANG_BAO_TRI")) << ";"
+        << diem_den << ";"
+        << hang_hang_khong << ";"
+        << ngay_khoi_hanh.chuoi_ngay_thang_nam()
+        << "\n";
+}
+
+void XeKhach::ghi_file(ofstream& file) {
+    file << ma_phuong_tien << ";"
+        << ten_phuong_tien << ";"
+        << so_ngay_thue << ";"
+        << fixed << setprecision(0) << gia_thue << ";"
+        << ten_tai_xe << ";"
+        << (trang_thai == CON_TRONG ? "CON_TRONG" : (trang_thai == DA_DAT ? "DA_DAT" : "DANG_BAO_TRI")) << ";"
+        << diem_den << ";"
+        << "Futa" << ";"  // hãng xe - cần lấy từ đâu đó hoặc thêm getter
+        << (loai_xe == XE_45_CHO ? "45 cho" : "16 cho")
+        << "\n";
+}
+
+void XeHoi::ghi_file(ofstream& file) {
+    file << ma_phuong_tien << ";"
+        << ten_phuong_tien << ";"
+        << so_ngay_thue << ";"
+        << fixed << setprecision(0) << gia_thue << ";"
+        << (trang_thai == CON_TRONG ? "CON_TRONG" : (trang_thai == DA_DAT ? "DA_DAT" : "DANG_BAO_TRI")) << ";"
+        << diem_den << ";"
+        << (loai_xe == XE_DIEN ? "XE_DIEN" : "XE_XANG") << ";"
+        << (so_ghe == XE_7_CHO ? "7 cho" : "5 cho")
+        << "\n";
+}
+
+void DanhSachPhuongTien::ghi_file() {
+    ofstream file("ds_phuong_tien.txt");
+    if (!file.is_open()) {
+        cout << "Khong mo duoc file de ghi!\n";
+        return;
+    }
+
+    // Ghi MayBay
+    bool hasMayBay = false;
+    NodePhuongTien* p = head;
+    while (p) {
+        if (dynamic_cast<MayBay*>(p->data)) {
+            if (!hasMayBay) {
+                file << "MayBay\n";
+                hasMayBay = true;
+            }
+            p->data->ghi_file(file);
+        }
+        p = p->next;
+    }
+
+    // Ghi XeKhach
+    bool hasXeKhach = false;
+    p = head;
+    while (p) {
+        if (dynamic_cast<XeKhach*>(p->data)) {
+            if (!hasXeKhach) {
+                file << "\nXeKhach\n";
+                hasXeKhach = true;
+            }
+            p->data->ghi_file(file);
+        }
+        p = p->next;
+    }
+
+    // Ghi XeHoi
+    bool hasXeHoi = false;
+    p = head;
+    while (p) {
+        if (dynamic_cast<XeHoi*>(p->data)) {
+            if (!hasXeHoi) {
+                file << "\nXeHoi\n";
+                hasXeHoi = true;
+            }
+            p->data->ghi_file(file);
+        }
+        p = p->next;
+    }
+
+    file.close();
+    cout << "Da ghi file thanh cong!\n";
+}
 
 void DanhSachPhuongTien::insertion_sort_theo_gia() {
     if (this->head == nullptr || this->head->next == nullptr) return;
@@ -751,7 +840,7 @@ void DanhSachPhuongTien::hien_thi_menu_phuong_tien() {
         cout << "\n5. Chinh sua phuong tien";
         cout << "\n6. Sap xep theo gia thue";
         cout << "\n7. Sap xep theo trang thai";
-        cout << "\n8. Ghi danh sach ra file (dang bao tri)";
+        cout << "\n8. Ghi danh sach ra file ";
         cout << "\n0. Thoat";
         cout << "\n==============================";
         cout << "\nNhap lua chon: ";
@@ -826,7 +915,11 @@ void DanhSachPhuongTien::hien_thi_menu_phuong_tien() {
             cout << "Da sap xep theo trang thai!\n";
             this->hien_thi();
             break;
-
+        case 8: {
+            this->ghi_file();
+            cout << "Da ghi danh sach ra file thanh cong!\n";
+            break;
+        }
         case 0:
             cout << "Thoat chuong trinh.\n";
             break;
