@@ -17,9 +17,6 @@ protected:
     string so_dien_thoai;
     Date ngay_sinh;
     string email;
-    bool kiemTraSDT(const string& sdt);
-	bool kiemTraEmail(const string& email);
-
 public:
     Nguoi();
     virtual ~Nguoi();
@@ -93,6 +90,8 @@ public:
     NodeKhachHang* merge_sort(NodeKhachHang* head);
     void bubble_sort_ten();
     void doc_file();
+    void ghi_file();
+
     void giai_phong();
     void hien_thi_menu_khach_hang();
 	NodeKhachHang* getHead() { return head; }
