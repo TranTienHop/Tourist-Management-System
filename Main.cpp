@@ -1,4 +1,4 @@
-﻿#include"CongTy.h"
+#include"CongTy.h"
 
 int main() {
 
@@ -59,12 +59,12 @@ int main() {
             compiny.hien_thi_menu_dich_vu();
             break;
         case 9:
-           cout << "\n=== CHE DO: QUAN LY DOANH THU ===\n";
-           compiny.hien_thi_menu_doanh_thu();
-           break;
+            cout << "\n=== CHE DO: QUAN LY DOANH THU ===\n";
+            compiny.hien_thi_menu_doanh_thu();
+            break;
         case 10:
-           cout << "\n=== CHE DO: THONG KE ===\n";
-           compiny.hien_thi_menu_thong_ke();
+            cout << "\n=== CHE DO: THONG KE ===\n";
+            compiny.hien_thi_menu_thong_ke();
             break;
         case 0:
             cout << "\nDa thoat chuong trinh. Tam biet!\n";
@@ -76,6 +76,5 @@ int main() {
     } while (lua_chon != 0);
 
     return 0;
-
 
 }
