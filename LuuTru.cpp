@@ -60,6 +60,15 @@ TrangThai LuuTru::get_trang_thai() {
     return this->trang_thai;
 }
 
+string LuuTru::trang_thai_to_string(TrangThai tt) {
+    switch(tt) {
+        case CON_TRONG: return "CON_TRONG";
+        case DA_DAT: return "DA_DAT";
+        case DANG_BAO_TRI: return "DANG_BAO_TRI";
+    }
+    return "KHONG_RO";
+}
+
 //------------------ KhachSan ------------------
 
 KhachSan::KhachSan() : LuuTru() {
@@ -510,6 +519,20 @@ void KhachSan::doc_file(string line) {
     this->trang_thai = chuyen_str_thanh_trang_thai(tt_str);
 }
 
+void KhachSan::ghi_file(ofstream &file) {
+    file << ma_luu_tru << ";"
+         << ten_luu_tru << ";"
+         << dia_chi.get_so_nha() << ";"
+         << dia_chi.get_ten_duong() << ";"
+         << dia_chi.get_ten_tinh() << ";"
+         << so_dien_thoai << ";"
+         << fixed << setprecision(2) << gia << ";"
+         << sao << ";"
+         << tong_so_phong << ";"
+         << trang_thai_to_string(trang_thai)
+         << "\n";
+}
+
 // -------------------- NhaNghi --------------------
 void NhaNghi::doc_file(string line) {
     stringstream ss(line);
@@ -542,6 +565,21 @@ void NhaNghi::doc_file(string line) {
     this->trang_thai = CON_TRONG; // mặc định khi đọc
 }
 
+void NhaNghi::ghi_file(ofstream &file) {
+    file << ma_luu_tru << ";"
+         << ten_luu_tru << ";"
+         << dia_chi.get_so_nha() << ";"
+         << dia_chi.get_ten_duong() << ";"
+         << dia_chi.get_ten_tinh() << ";"
+         << so_dien_thoai << ";"
+         << fixed << setprecision(2) << gia << ";"
+         << gio_hoat_dong << ";"
+         << so_xe << ";"
+         << trang_thai_to_string(trang_thai)
+         << "\n";
+}
+
+
 // -------------------- DanhSachLuuTru --------------------
 void DanhSachLuuTru::doc_file() {
     string filename = "ds_luu_tru.txt"; 
@@ -569,6 +607,29 @@ void DanhSachLuuTru::doc_file() {
 
     file.close();
 }
+
+void DanhSachLuuTru::ghi_file() {
+    ofstream file("ds_luu_tru.txt");
+    if (!file.is_open()) {
+        cout << "Khong mo duoc file de ghi!\n";
+        return;
+    }
+
+    NodeLuuTru* p = head;
+    while (p != nullptr) {
+        // Kiểm tra kiểu runtime bằng dynamic_cast
+        if (KhachSan* ks = dynamic_cast<KhachSan*>(p->luu_tru)) {
+            ks->ghi_file(file);
+        }
+        else if (NhaNghi* nn = dynamic_cast<NhaNghi*>(p->luu_tru)) {
+            nn->ghi_file(file);
+        }
+        p = p->next;
+    }
+
+    file.close();
+    cout << "Da ghi file thanh cong!\n";
+}
 void DanhSachLuuTru::hien_thi_menu_luu_tru() {
 
     int choice;
@@ -584,7 +645,7 @@ void DanhSachLuuTru::hien_thi_menu_luu_tru() {
         cout << "\n6. Sap xep theo gia";
         cout << "\n7. Sap xep theo trang thai";
         cout << "\n8. Kiem tra trang thai theo ma";
-        cout << "\n9. Ghi danh sach ra file (dang bao tri)";
+        cout << "\n9. Ghi danh sach ra file";
         cout << "\n0. Thoat";
         cout << "\n==============================";
         cout << "\nNhap lua chon: ";
@@ -664,6 +725,12 @@ void DanhSachLuuTru::hien_thi_menu_luu_tru() {
             break;
         }
 
+        case 9: {
+    	    this->ghi_file();
+    	    cout << "Da ghi danh sach ra file thanh cong!\n";
+    	    break;
+		}
+
         case 0:
             cout << "Thoat chuong trinh.\n";
             break;
@@ -674,5 +741,6 @@ void DanhSachLuuTru::hien_thi_menu_luu_tru() {
 
     } while (choice != 0);
 }
+
 
 
