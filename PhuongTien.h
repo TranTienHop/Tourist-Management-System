@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 #include <iostream>
 #include <string>
 #include <sstream>  
@@ -50,6 +50,7 @@ public:
     virtual void kiem_tra_trang_thai() = 0;
     virtual void cap_nhat_trang_thai() = 0;
     virtual void doc_file(string ) = 0;
+    virtual void ghi_file(ofstream& file) = 0;
 };
 
 class MayBay : public PhuongTien {
@@ -75,6 +76,7 @@ public:
     void kiem_tra_trang_thai();
     void cap_nhat_trang_thai();
     void doc_file(string);
+    void ghi_file(ofstream& file);
 };
 
 class XeKhach : public PhuongTien {
@@ -103,6 +105,7 @@ public:
     void kiem_tra_trang_thai();
     void cap_nhat_trang_thai();
     void doc_file(string);
+    void ghi_file(ofstream& file);
 };
 
 class XeHoi : public PhuongTien {
@@ -133,6 +136,7 @@ public:
     void kiem_tra_trang_thai();
     void cap_nhat_trang_thai();
     void doc_file(string);
+    void ghi_file(ofstream& file);
 };
 
 struct NodePhuongTien {
@@ -156,8 +160,9 @@ public:
     void insertion_sort_theo_gia();
     void bubble_sort_theo_trang_thai();
     void doc_file();
+    void ghi_file();
     void hien_thi_menu_phuong_tien();
-	NodePhuongTien getHead() { return head; }
+	NodePhuongTien* getHead() { return head; }
 
 
 };
