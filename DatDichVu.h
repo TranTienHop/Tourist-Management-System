@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 #include <iostream>
 #include <iomanip>
 #include <string>
@@ -39,6 +39,7 @@ public:
     void set_phuong_tien(PhuongTien*);
     void set_dia_danh(DiaDanh*);
     void set_luu_tru(LuuTru*);
+    void set_ngay_dat_dich_vu(Date);
 
     KhachHang* get_khach_hang();
     NhanVien* get_nhan_vien_hd();
@@ -48,6 +49,7 @@ public:
 
     float get_tong_tien();
     void tinh_tong_tien();
+    Date get_ngay_dat_dich_vu();
 
     void hien_thi();
     void nhap();
@@ -67,13 +69,21 @@ public:
     DanhSachDichVu();
     ~DanhSachDichVu();
 
-    void them();
+    void them(DanhSachKhachHang& dsKH,
+        DanhSachNhanVien& dsNV,
+        DanhSachPhuongTien& dsPT,
+        DanhSachDiaDanh& dsDD,
+        DanhSachLuuTru& dsLT);
     void hien_thi();
     void xoa(string);
     void chinh_sua(string);
     void cap_nhat(string);
     DatDichVu* tim_kiem(string);
-    void hien_thi_menu_dich_vu();
+    void hien_thi_menu_dich_vu(DanhSachKhachHang& dsKH,
+        DanhSachNhanVien& dsNV,
+        DanhSachPhuongTien& dsPT,
+        DanhSachDiaDanh& dsDD,
+        DanhSachLuuTru& dsLT);
 	NodeDichVu* getHead() { return head; }
 
 
@@ -83,5 +93,6 @@ public:
         DanhSachDiaDanh& dsDD,
         DanhSachLuuTru& dsLT,
         DanhSachThanhToan& dsTT);
+    void ghi_file();
 };
 
