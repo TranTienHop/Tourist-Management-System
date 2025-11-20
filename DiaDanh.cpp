@@ -1,4 +1,4 @@
-﻿#include"DiaDanh.h"
+#include"DiaDanh.h"
 
 DiaDanh::DiaDanh() : gia_du_lich(0) {
 
@@ -250,6 +250,28 @@ void DanhSachDiaDanh::doc_file() {
     file.close();
 }
 
+void DanhSachDiaDanh::ghi_file() {
+    ofstream file("ds_dia_danh.txt");
+    if (!file.is_open()) {
+        cout << "Khong mo duoc file de ghi!\n";
+        return;
+    }
+
+    NodeDiaDanh* p = head;
+    while (p != nullptr) {
+        DiaDanh* d = p->data;
+        file << d->get_ma_dia_danh() << ";"
+            << d->get_ten_dia_danh() << ";"
+            << d->get_ngay_khoi_hanh().chuoi_ngay_thang_nam() << ";"
+            << fixed << setprecision(0) << d->get_gia()
+            << "\n";
+        p = p->next;
+    }
+
+    file.close();
+    cout << "Da ghi file thanh cong!\n";
+}
+
 void DanhSachDiaDanh::hien_thi_menu_dia_danh() {
 
     int choice;
@@ -265,7 +287,7 @@ void DanhSachDiaDanh::hien_thi_menu_dia_danh() {
         cout << "\n6. Sap xep theo gia ";
         cout << "\n7. Sap xep theo ten dia danh";
         cout << "\n8. Sap xep theo ngay khoi hanh";
-        cout << "\n9. Ghi danh sach ra file (dang bao tri)";
+        cout << "\n9. Ghi danh sach ra file";
         cout << "\n0. Thoat";
         cout << "\nNhap lua chon: ";
         cin >> choice;
@@ -332,6 +354,11 @@ void DanhSachDiaDanh::hien_thi_menu_dia_danh() {
             cout << "Da sap xep theo ngay khoi hanh\n";
             this->hien_thi();
             break;
+        case 9: {
+            this->ghi_file();
+            cout << "Da ghi danh sach ra file thanh cong!\n";
+            break;
+        }
 
         case 0:
             cout << "Thoat chuong trinh.\n";
