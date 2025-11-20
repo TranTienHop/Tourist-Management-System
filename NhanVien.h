@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 #include"KhachHang.h"
 #include "validator.h"
 using namespace std;
@@ -63,6 +63,7 @@ public:
    // void luu();
     double tinh_luong();
     void doc_file(string);
+    void ghi_file(ofstream& file);
 };
 
 class HuongDanVien : public NhanVien {
@@ -87,6 +88,7 @@ public:
     //void luu();
     double tinh_luong();
     void doc_file(string);
+    void ghi_file(ofstream& file);
 };
 
 struct NodeNhanVien {
@@ -110,6 +112,7 @@ public:
     void insertion_sort_luong();
     void bubble_sort_ten();
     void doc_file(); 
+    void ghi_file();
     void giai_phong();
     void hien_thi_menu_nhan_vien();
 	NodeNhanVien* getHead() { return head; }
