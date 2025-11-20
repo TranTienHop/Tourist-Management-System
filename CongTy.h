@@ -31,7 +31,6 @@ public:
 	void tim_kiem();
 	void sap_xep();
 	void chinh_sua();
-
 	void doc_file();
 
 	void hien_thi_menu_admin();
@@ -44,5 +43,4 @@ public:
 	void hien_thi_menu_dich_vu();
 	void hien_thi_menu_doanh_thu();
 	void hien_thi_menu_thong_ke();
-
 };
