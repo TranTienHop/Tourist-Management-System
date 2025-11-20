@@ -1,4 +1,4 @@
-﻿#include "ThanhToan.h"
+#include "ThanhToan.h"
 
 ThanhToan::ThanhToan() {
     ma_thanh_toan = "";
@@ -152,30 +152,6 @@ void ThanhToan::cap_nhat() {
     }
 }
 
-void ThanhToan::ghi_file(ofstream &file) {
-	file << ma_thanh_toan << ";"
-         << ma_dat_dich_vu << ";"
-         << so_tien << ";"
-         << loai << ";";
-         
-    if (loai == TIEN_MAT) {
-        file << du_lieu.so_tien_mat << ";";
-    }
-    else if (loai == THE) {
-        file << du_lieu.so_the << ";";
-    }
-    else { // VI_DIEN_TU
-        file << du_lieu.tai_khoan_vi << ";";
-    }
-    
-    file << ngay_thanh_toan.get_ngay() << "/"
-         << ngay_thanh_toan.get_thang() << "/"
-         << ngay_thanh_toan.get_nam() << ";";
-         
-    file << da_thanh_toan;
-    file << "\n";
-}
-
 // ----------------- DANH SÁCH -----------------
 
 DanhSachThanhToan::DanhSachThanhToan() {
@@ -287,6 +263,14 @@ ThanhToan* DanhSachThanhToan::tim_kiem(string ma) {
     return nullptr;
 }
 
+ThanhToan* DanhSachThanhToan::tim_kiem_theo_ma_dich_vu(string ma_dich_vu) {
+    for (NodeThanhToan* p = head; p; p = p->next) {
+        if (p->data && p->data->lay_ma_dat_dich_vu() == ma_dich_vu)
+            return p->data;
+    }
+    return nullptr;
+}
+
 void DanhSachThanhToan::insertion_sort_ngay() {
     if (!head || !head->next) return;
 
@@ -338,24 +322,6 @@ void DanhSachThanhToan::bubble_sort_loai() {
     } while (swapped);
 }
 
-void DanhSachThanhToan::ghi_file() {
-    ofstream file("ds_thanh_toan.txt");
-
-    if (!file.is_open()) {
-        cout << "Khong mo duoc file!\n";
-        return;
-    }
-
-    NodeThanhToan* p = head;
-    while (p != nullptr) {
-        p->data->ghi_file(file);
-        p = p->next;
-    }
-
-    file.close();
-    cout << "Da ghi file thanh cong!\n";
-}
-
 void DanhSachThanhToan::doc_file() {
     ifstream file("ds_thanh_toan.txt");
     if (!file.is_open()) return;
@@ -390,6 +356,44 @@ void DanhSachThanhToan::doc_file() {
 
     file.close();
 }
+
+void DanhSachThanhToan::ghi_file() {
+    ofstream file("ds_thanh_toan.txt");
+    if (!file.is_open()) {
+        cout << "Khong mo duoc file de ghi!\n";
+        return;
+    }
+
+    NodeThanhToan* p = head;
+    while (p != nullptr) {
+        ThanhToan* tt = p->data;
+        file << tt->lay_ma_thanh_toan() << ";"
+            << tt->lay_ma_dat_dich_vu() << ";"
+            << fixed << setprecision(0) << tt->lay_so_tien() << ";"
+            << (int)tt->lay_loai() << ";";
+
+        // Ghi dữ liệu theo loại
+        if (tt->lay_loai() == TIEN_MAT) {
+            file << fixed << setprecision(0) << tt->lay_du_lieu().so_tien_mat;
+        }
+        else if (tt->lay_loai() == THE) {
+            file << tt->lay_du_lieu().so_the;
+        }
+        else {
+            file << tt->lay_du_lieu().tai_khoan_vi;
+        }
+
+        file << ";"
+            << tt->lay_ngay_thanh_toan().chuoi_ngay_thang_nam() << ";"
+            << (tt->lay_trang_thai() ? 1 : 0)
+            << "\n";
+        p = p->next;
+    }
+
+    file.close();
+    cout << "Da ghi file thanh cong!\n";
+}
+
 void DanhSachThanhToan::hien_thi_menu_thanh_toan() {
 
     int choice;
@@ -406,7 +410,7 @@ void DanhSachThanhToan::hien_thi_menu_thanh_toan() {
         cout << "7. Sap xep theo ngay thanh toan\n";
         cout << "8. Sap xep theo so tien\n";
         cout << "9. Sap xep theo loai thanh toan\n";
-        cout << "10. Ghi danh sach ra file\n";
+        cout << "10. Ghi danh sach ra file \n";
         cout << "0. Thoat\n";
         cout << "Nhap lua chon: ";
         cin >> choice;
@@ -470,10 +474,11 @@ void DanhSachThanhToan::hien_thi_menu_thanh_toan() {
             cout << "Da sap xep theo loai thanh toan\n";
             this->hien_thi();
             break;
-        case 10:
+        case 10: {
             this->ghi_file();
-    	    cout << "Da ghi danh sach ra file thanh cong!\n";
-    	    break;
+            cout << "Da ghi danh sach ra file thanh cong!\n";
+            break;
+        }
         case 0:
             cout << "Thoat chuong trinh.\n";
             break;
@@ -483,5 +488,4 @@ void DanhSachThanhToan::hien_thi_menu_thanh_toan() {
 
     } while (choice != 0);
 }
-
 
