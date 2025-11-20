@@ -1,4 +1,4 @@
-﻿#include "DatDichVu.h"
+#include "DatDichVu.h"
 #include <fstream>
 #include <sstream>
 
@@ -22,6 +22,7 @@ void DatDichVu::set_nhan_vien_hd(NhanVien* p) { nhan_vien_hd = p; }
 void DatDichVu::set_phuong_tien(PhuongTien* p) { phuong_tien = p; }
 void DatDichVu::set_dia_danh(DiaDanh* p) { dia_danh = p; }
 void DatDichVu::set_luu_tru(LuuTru* p) { luu_tru = p; }
+void DatDichVu::set_ngay_dat_dich_vu(Date d) { ngay_dat_dich_vu = d; }
 
 KhachHang* DatDichVu::get_khach_hang() { return khach_hang; }
 NhanVien* DatDichVu::get_nhan_vien_hd() { return nhan_vien_hd; }
@@ -30,6 +31,7 @@ DiaDanh* DatDichVu::get_dia_danh() { return dia_danh; }
 LuuTru* DatDichVu::get_luu_tru() { return luu_tru; }
 
 float DatDichVu::get_tong_tien() { return tong_tien; }
+Date DatDichVu::get_ngay_dat_dich_vu() { return ngay_dat_dich_vu; }
 
 void DatDichVu::tinh_tong_tien() {
     tong_tien = 0;
@@ -89,9 +91,80 @@ DanhSachDichVu::~DanhSachDichVu() {
     }
 }
 
-void DanhSachDichVu::them() {
+void DanhSachDichVu::them(DanhSachKhachHang& dsKH,
+    DanhSachNhanVien& dsNV,
+    DanhSachPhuongTien& dsPT,
+    DanhSachDiaDanh& dsDD,
+    DanhSachLuuTru& dsLT) {
+    
     DatDichVu* dv = new DatDichVu;
-    dv->nhap();
+    
+    // Nhập mã dịch vụ
+    cout << "Nhap ma dich vu: ";
+    string ma_dv;
+    getline(cin, ma_dv);
+    dv->set_ma_dich_vu(ma_dv);
+
+    // Nhập và tìm khách hàng
+    string id_kh;
+    cout << "Nhap ma khach hang: ";
+    getline(cin, id_kh);
+    dv->set_khach_hang(dsKH.tim_kiem(id_kh));
+    if (!dv->get_khach_hang()) {
+        cout << "Khong tim thay khach hang co ma: " << id_kh << "\n";
+    }
+
+    // Nhập và tìm nhân viên
+    string id_nv_str;
+    cout << "Nhap ma nhan vien: ";
+    getline(cin, id_nv_str);
+    if (!id_nv_str.empty()) {
+        try {
+            int id_nv = stoi(id_nv_str);
+            dv->set_nhan_vien_hd(dsNV.tim_kiem(id_nv));
+            if (!dv->get_nhan_vien_hd()) {
+                cout << "Khong tim thay nhan vien co ma: " << id_nv << "\n";
+            }
+        }
+        catch (...) {
+            cout << "Ma nhan vien khong hop le!\n";
+        }
+    }
+
+    // Nhập và tìm phương tiện
+    string id_pt;
+    cout << "Nhap ma phuong tien: ";
+    getline(cin, id_pt);
+    dv->set_phuong_tien(dsPT.tim_kiem(id_pt));
+    if (!dv->get_phuong_tien()) {
+        cout << "Khong tim thay phuong tien co ma: " << id_pt << "\n";
+    }
+
+    // Nhập và tìm địa danh
+    string id_dd;
+    cout << "Nhap ma dia danh: ";
+    getline(cin, id_dd);
+    dv->set_dia_danh(dsDD.tim_kiem(id_dd));
+    if (!dv->get_dia_danh()) {
+        cout << "Khong tim thay dia danh co ma: " << id_dd << "\n";
+    }
+
+    // Nhập và tìm lưu trú
+    string id_lt;
+    cout << "Nhap ma luu tru: ";
+    getline(cin, id_lt);
+    dv->set_luu_tru(dsLT.tim_kiem(id_lt));
+    if (!dv->get_luu_tru()) {
+        cout << "Khong tim thay luu tru co ma: " << id_lt << "\n";
+    }
+
+    // Nhập ngày đặt dịch vụ
+    cout << "Nhap ngay dat dich vu (dd/mm/yyyy): ";
+    Date ngay;
+    cin >> ngay;
+    cin.ignore();
+    dv->set_ngay_dat_dich_vu(ngay);
+
     dv->tinh_tong_tien();
 
     NodeDichVu* node = new NodeDichVu;
@@ -104,6 +177,8 @@ void DanhSachDichVu::them() {
         while (p->next) p = p->next;
         p->next = node;
     }
+    
+    cout << "Da them dich vu thanh cong!\n";
 }
 
 void DanhSachDichVu::hien_thi() {
@@ -163,7 +238,7 @@ void DanhSachDichVu::doc_file(DanhSachKhachHang& dsKH,
         if (line.empty()) continue;
 
         stringstream ss(line);
-        string ma, id_kh, id_nv_str, id_pt_str, id_dd_str, id_lt_str;
+        string ma, id_kh, id_nv_str, id_pt_str, id_dd_str, id_lt_str, id_tt_str, ngay_str;
 
         getline(ss, ma, ';');
         getline(ss, id_kh, ';');
@@ -171,9 +246,27 @@ void DanhSachDichVu::doc_file(DanhSachKhachHang& dsKH,
         getline(ss, id_pt_str, ';');
         getline(ss, id_dd_str, ';');
         getline(ss, id_lt_str, ';');
+        getline(ss, id_tt_str, ';');  // mã thanh toán (không dùng nhưng cần đọc)
+        getline(ss, ngay_str, ';');   // ngày đặt dịch vụ
 
+        // Kiểm tra và chuyển đổi id_nv_str
+        if (id_nv_str.empty()) {
+            cout << "Loi: Ma nhan vien rong trong dong: " << line << "\n";
+            continue;
+        }
 
-        int id_nv = stoi(id_nv_str);
+        int id_nv;
+        try {
+            id_nv = stoi(id_nv_str);
+        }
+        catch (const std::invalid_argument& e) {
+            cout << "Loi: Khong the chuyen doi ma nhan vien '" << id_nv_str << "' trong dong: " << line << "\n";
+            continue;
+        }
+        catch (const std::out_of_range& e) {
+            cout << "Loi: Ma nhan vien qua lon trong dong: " << line << "\n";
+            continue;
+        }
 
         DatDichVu* dv = new DatDichVu;
         dv->set_ma_dich_vu(ma);
@@ -183,6 +276,12 @@ void DanhSachDichVu::doc_file(DanhSachKhachHang& dsKH,
         dv->set_dia_danh(dsDD.tim_kiem(id_dd_str));
         dv->set_luu_tru(dsLT.tim_kiem(id_lt_str));
 
+        // Đọc ngày đặt dịch vụ
+        if (!ngay_str.empty()) {
+            Date ngay;
+            ngay.phan_tich_chuoi_ngay(ngay_str);
+            dv->set_ngay_dat_dich_vu(ngay);
+        }
 
         dv->tinh_tong_tien();
 
@@ -200,6 +299,62 @@ void DanhSachDichVu::doc_file(DanhSachKhachHang& dsKH,
     }
 
     fin.close();
+}
+
+void DanhSachDichVu::ghi_file() {
+    ofstream file("ds_dich_vu.txt");
+    if (!file.is_open()) {
+        cout << "Khong mo duoc file de ghi!\n";
+        return;
+    }
+
+    NodeDichVu* p = head;
+    while (p != nullptr) {
+        DatDichVu* dv = p->data;
+        file << dv->get_ma_dich_vu() << ";";
+        
+        if (dv->get_khach_hang()) {
+            file << dv->get_khach_hang()->get_ma_khach_hang() << ";";
+        } else {
+            file << ";";
+        }
+        
+        if (dv->get_nhan_vien_hd()) {
+            file << dv->get_nhan_vien_hd()->get_ma_nhan_vien() << ";";
+        } else {
+            file << ";";
+        }
+        
+        if (dv->get_phuong_tien()) {
+            file << dv->get_phuong_tien()->get_ma_phuong_tien() << ";";
+        } else {
+            file << ";";
+        }
+        
+        if (dv->get_dia_danh()) {
+            file << dv->get_dia_danh()->get_ma_dia_danh() << ";";
+        } else {
+            file << ";";
+        }
+        
+        if (dv->get_luu_tru()) {
+            file << dv->get_luu_tru()->get_ma_luu_tru() << ";";
+        } else {
+            file << ";";
+        }
+        
+        // Mã thanh toán - không có trong DatDichVu, để trống
+        file << ";";
+        
+        // Ngày đặt dịch vụ
+        file << dv->get_ngay_dat_dich_vu().chuoi_ngay_thang_nam();
+        
+        file << "\n";
+        p = p->next;
+    }
+
+    file.close();
+    cout << "Da ghi file thanh cong!\n";
 }
 
 void DanhSachDichVu::xoa(string ma) {
@@ -256,7 +411,11 @@ void DanhSachDichVu::cap_nhat(string ma) {
     }
 }
 
-void DanhSachDichVu::hien_thi_menu_dich_vu() {
+void DanhSachDichVu::hien_thi_menu_dich_vu(DanhSachKhachHang& dsKH,
+    DanhSachNhanVien& dsNV,
+    DanhSachPhuongTien& dsPT,
+    DanhSachDiaDanh& dsDD,
+    DanhSachLuuTru& dsLT) {
     int choice;
     this->hien_thi();
 
@@ -269,7 +428,7 @@ void DanhSachDichVu::hien_thi_menu_dich_vu() {
         cout << "5. Chinh sua dich vu\n";
         cout << "6. Cap nhat ngay dich vu\n";
         cout << "7. Tinh tong tien dich vu\n";
-        cout << "8. Ghi danh sach ra file (dang bao tri)\n";
+        cout << "8. Ghi danh sach ra file \n";
         cout << "0. Thoat\n";
         cout << "Nhap lua chon: ";
         cin >> choice;
@@ -277,7 +436,7 @@ void DanhSachDichVu::hien_thi_menu_dich_vu() {
 
         switch (choice) {
         case 1:
-            this->them();
+            this->them(dsKH, dsNV, dsPT, dsDD, dsLT);
             this->hien_thi();
             break;
         case 2:
@@ -330,6 +489,11 @@ void DanhSachDichVu::hien_thi_menu_dich_vu() {
             else {
                 cout << "Khong tim thay dich vu co ma \"" << ma << "\"!\n";
             }
+            break;
+        }
+        case 8: {
+            this->ghi_file();
+            cout << "Da ghi danh sach ra file thanh cong!\n";
             break;
         }
         case 0:
