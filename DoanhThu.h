@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 #include "SP_Date.h"
 #include <iostream>
 #include <iomanip>
