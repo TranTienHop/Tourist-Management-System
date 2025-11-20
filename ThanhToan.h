@@ -56,7 +56,6 @@ public:
     void hien_thi();
     void chinh_sua();
     void cap_nhat();
-	void ghi_file(ofstream  &file);
 };
 
 struct NodeThanhToan {
@@ -77,12 +76,14 @@ public:
     void chinh_sua(string);
     void hien_thi();
     ThanhToan* tim_kiem(string);
+    ThanhToan* tim_kiem_theo_ma_dich_vu(string ma_dich_vu);
     void insertion_sort_ngay();
     void selection_sort_so_tien();
     void bubble_sort_loai();
     void doc_file();
-	void ghi_file();
+    void ghi_file();
     void hien_thi_menu_thanh_toan();
 	NodeThanhToan* getHead() { return head; }
-};
 
+
+};
