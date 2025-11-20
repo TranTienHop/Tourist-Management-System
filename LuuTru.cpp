@@ -91,7 +91,7 @@ void KhachSan::nhap() {
     cout << "Nhap ma khach san: "; cin >> this->ma_luu_tru;
     cin.ignore();
     cout << "Nhap ten khach san: "; getline(cin, this->ten_luu_tru);
-    cout << "Nhap dia chi khach san: "; cin >> this->dia_chi;
+    cout << "Nhap dia chi khach san:\n "; cin >> this->dia_chi;
     do {
         cout << "Nhap so dien thoai: ";
         getline(cin, this->so_dien_thoai);
@@ -100,11 +100,13 @@ void KhachSan::nhap() {
             cout << "So dien thoai phai du 10 so va bat dau bang chu so 0! Moi nhap lai.\n";
         }
     } while (!input_validator::kiemTraSDT(this->so_dien_thoai));
-    cin.ignore();
     cout << "Nhap gia: "; cin >> this->gia;
     cout << "Nhap so sao: "; cin >> this->sao;
     cout << "Nhap tong so phong: "; cin >> this->tong_so_phong;
-    this->trang_thai = CON_TRONG;
+    int tt;
+    cout << "Nhap trang thai phong (0-CON_TRONG, 1-DA_DAT, 2-DANG_BAO_TRI): ";
+    cin >> tt;
+    this->trang_thai = static_cast<TrangThai>(tt);
 }
 
 void KhachSan::hien_thi() {
@@ -129,7 +131,6 @@ void KhachSan::cap_nhat() {
             cout << "So dien thoai phai du 10 so va bat dau bang chu so 0! Moi nhap lai.\n";
         }
     } while (!input_validator::kiemTraSDT(this->so_dien_thoai));
-    cin.ignore();
     cout << "Nhap gia moi: "; cin >> this->gia;
     cout << "Nhap so sao moi: "; cin >> this->sao;
 }
@@ -212,17 +213,16 @@ void NhaNghi::nhap() {
             cout << "So dien thoai phai du 10 so va bat dau bang chu so 0! Moi nhap lai.\n";
         }
     } while (!input_validator::kiemTraSDT(this->so_dien_thoai));
-    cin.ignore();
     cout << "Nhap gia: "; cin >> this->gia;
     cin.ignore();
     cout << "Nhap gio hoat dong: "; getline(cin, this->gio_hoat_dong);
     cout << "Nhap so xe: "; cin >> this->so_xe;
     cin.ignore();
     int tt;
-    cout << "Nhap tinh trang xe (0-CON_TRONG,1-DA_DAT,2-DANG_BAO_TRI): ";
+    cout << "Nhap tinh trang xe va phong (0-CON_TRONG,1-DA_DAT,2-DANG_BAO_TRI): ";
     cin >> tt;
     this->tinh_trang_xe = static_cast<TrangThai>(tt);
-    this->trang_thai = CON_TRONG; 
+    this->trang_thai = static_cast<TrangThai>(tt);
 }
 
 void NhaNghi::hien_thi() {
@@ -262,16 +262,16 @@ void NhaNghi::cap_nhat() {
             cout << "So dien thoai phai du 10 so va bat dau bang chu so 0! Moi nhap lai.\n";
         }
     } while (!input_validator::kiemTraSDT(this->so_dien_thoai));
-    cin.ignore();
     cout << "Nhap gia moi: "; cin >> this->gia;
     cin.ignore();
     cout << "Nhap gio hoat dong moi: "; getline(cin, this->gio_hoat_dong);
     cout << "Nhap so xe moi: "; cin >> this->so_xe;
     cin.ignore();
     int tt;
-    cout << "Nhap tinh trang xe moi (0-CON_TRONG,1-DA_DAT,2-DANG_BAO_TRI): ";
+    cout << "Nhap tinh trang xe va phong moi (0-CON_TRONG,1-DA_DAT,2-DANG_BAO_TRI): ";
     cin >> tt;
     this->tinh_trang_xe = static_cast<TrangThai>(tt);
+    this->trang_thai = static_cast<TrangThai>(tt);
 }
 
 void NhaNghi::sua() {
@@ -312,11 +312,11 @@ void NhaNghi::kt_trang_thai() {
     cout << "\n";
 }
 
-
 void NhaNghi::cap_nhat_trang_thai() {
     int tt;
     cout << "Nhap trang thai moi (0-TRONG,1-DAT,2-BAO_TRI): ";
     cin >> tt;
+    this->tinh_trang_xe = static_cast<TrangThai>(tt);
     this->trang_thai = static_cast<TrangThai>(tt);
 }
 
@@ -674,4 +674,5 @@ void DanhSachLuuTru::hien_thi_menu_luu_tru() {
 
     } while (choice != 0);
 }
+
 
