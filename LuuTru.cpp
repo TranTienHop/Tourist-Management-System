@@ -100,7 +100,6 @@ void KhachSan::nhap() {
             cout << "So dien thoai phai du 10 so va bat dau bang chu so 0! Moi nhap lai.\n";
         }
     } while (!input_validator::kiemTraSDT(this->so_dien_thoai));
-    cin.ignore();
     cout << "Nhap gia: "; cin >> this->gia;
     cout << "Nhap so sao: "; cin >> this->sao;
     cout << "Nhap tong so phong: "; cin >> this->tong_so_phong;
@@ -129,7 +128,6 @@ void KhachSan::cap_nhat() {
             cout << "So dien thoai phai du 10 so va bat dau bang chu so 0! Moi nhap lai.\n";
         }
     } while (!input_validator::kiemTraSDT(this->so_dien_thoai));
-    cin.ignore();
     cout << "Nhap gia moi: "; cin >> this->gia;
     cout << "Nhap so sao moi: "; cin >> this->sao;
 }
@@ -212,7 +210,6 @@ void NhaNghi::nhap() {
             cout << "So dien thoai phai du 10 so va bat dau bang chu so 0! Moi nhap lai.\n";
         }
     } while (!input_validator::kiemTraSDT(this->so_dien_thoai));
-    cin.ignore();
     cout << "Nhap gia: "; cin >> this->gia;
     cin.ignore();
     cout << "Nhap gio hoat dong: "; getline(cin, this->gio_hoat_dong);
@@ -222,7 +219,7 @@ void NhaNghi::nhap() {
     cout << "Nhap tinh trang xe (0-CON_TRONG,1-DA_DAT,2-DANG_BAO_TRI): ";
     cin >> tt;
     this->tinh_trang_xe = static_cast<TrangThai>(tt);
-    this->trang_thai = CON_TRONG; 
+    this->trang_thai = static_cast<TrangThai>(tt);
 }
 
 void NhaNghi::hien_thi() {
@@ -262,7 +259,6 @@ void NhaNghi::cap_nhat() {
             cout << "So dien thoai phai du 10 so va bat dau bang chu so 0! Moi nhap lai.\n";
         }
     } while (!input_validator::kiemTraSDT(this->so_dien_thoai));
-    cin.ignore();
     cout << "Nhap gia moi: "; cin >> this->gia;
     cin.ignore();
     cout << "Nhap gio hoat dong moi: "; getline(cin, this->gio_hoat_dong);
@@ -272,6 +268,8 @@ void NhaNghi::cap_nhat() {
     cout << "Nhap tinh trang xe moi (0-CON_TRONG,1-DA_DAT,2-DANG_BAO_TRI): ";
     cin >> tt;
     this->tinh_trang_xe = static_cast<TrangThai>(tt);
+    this->trang_thai = static_cast<TrangThai>(tt);
+
 }
 
 void NhaNghi::sua() {
@@ -738,3 +736,4 @@ void DanhSachLuuTru::ghi_file() {
     file.close();
     cout << "Da ghi file thanh cong!\n";
 }
+
