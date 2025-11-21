@@ -103,7 +103,11 @@ void KhachSan::nhap() {
     cout << "Nhap gia: "; cin >> this->gia;
     cout << "Nhap so sao: "; cin >> this->sao;
     cout << "Nhap tong so phong: "; cin >> this->tong_so_phong;
-    this->trang_thai = CON_TRONG;
+    cin.ignore();
+    int tt;
+    cout << "Nhap trang thai phong (0-CON_TRONG, 1-DA_DAT, 2-DANG_BAO_TRI): ";
+    cin >> tt;
+    this->trang_thai = static cast<TrangThai>(tt);
 }
 
 void KhachSan::hien_thi() {
@@ -216,7 +220,7 @@ void NhaNghi::nhap() {
     cout << "Nhap so xe: "; cin >> this->so_xe;
     cin.ignore();
     int tt;
-    cout << "Nhap tinh trang xe (0-CON_TRONG,1-DA_DAT,2-DANG_BAO_TRI): ";
+    cout << "Nhap tinh trang xe va phong (0-CON_TRONG,1-DA_DAT,2-DANG_BAO_TRI): ";
     cin >> tt;
     this->tinh_trang_xe = static_cast<TrangThai>(tt);
     this->trang_thai = static_cast<TrangThai>(tt);
@@ -269,7 +273,6 @@ void NhaNghi::cap_nhat() {
     cin >> tt;
     this->tinh_trang_xe = static_cast<TrangThai>(tt);
     this->trang_thai = static_cast<TrangThai>(tt);
-
 }
 
 void NhaNghi::sua() {
@@ -736,4 +739,5 @@ void DanhSachLuuTru::ghi_file() {
     file.close();
     cout << "Da ghi file thanh cong!\n";
 }
+
 
