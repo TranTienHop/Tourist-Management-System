@@ -91,7 +91,7 @@ void KhachSan::nhap() {
     cout << "Nhap ma khach san: "; cin >> this->ma_luu_tru;
     cin.ignore();
     cout << "Nhap ten khach san: "; getline(cin, this->ten_luu_tru);
-    cout << "Nhap dia chi khach san: "; cin >> this->dia_chi;
+    cout << "Nhap dia chi khach san: \n"; cin >> this->dia_chi;
     do {
         cout << "Nhap so dien thoai: ";
         getline(cin, this->so_dien_thoai);
@@ -107,7 +107,7 @@ void KhachSan::nhap() {
     int tt;
     cout << "Nhap trang thai phong (0-CON_TRONG, 1-DA_DAT, 2-DANG_BAO_TRI): ";
     cin >> tt;
-    this->trang_thai = static cast<TrangThai>(tt);
+    this->trang_thai = static_cast<TrangThai>(tt);
 }
 
 void KhachSan::hien_thi() {
@@ -739,5 +739,6 @@ void DanhSachLuuTru::ghi_file() {
     file.close();
     cout << "Da ghi file thanh cong!\n";
 }
+
 
 
