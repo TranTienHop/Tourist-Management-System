@@ -33,7 +33,7 @@ Sơ đồ phân cấp thư mục & file
  │     └─> NhânViên
  │            ├─> NhanVien.h
  │            └─> NhanVien.cpp
- │
+ |
  ├─> DịchVụ
  │      ├─> ĐặtDịchVụ
  │      │      ├─> DatDichVu.h
@@ -54,6 +54,9 @@ Sơ đồ phân cấp thư mục & file
  │      ├─> SP_Name.h     ──> SP_Name.cpp
  │      └─> SP_Time.h     ──> SP_Time.cpp
  │
+ │─> Kiêm tra chuỗi đầu vào:
+ |      ├─> validator.h  ──> validator.cpp
+ |
  ├─> Data
  │      ├─> ds_dich_vu
  │      ├─> ds_luu_tru
